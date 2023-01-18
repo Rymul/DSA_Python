@@ -83,3 +83,30 @@ def uncompress(s):
   return ''.join(res)
 
 print(uncompress("2c3a1t"))
+
+
+
+# Compress
+
+def compress(s):
+  s += '!'
+  i = 0
+  j = 0
+  res = []
+  
+  while j < len(s):
+    if s[j] == s[i]:
+      j += 1
+    else:
+      num = j-i
+      if num == 1:
+        res.append(s[i])
+      else:
+        res.append(str(num))
+        res.append(s[i])
+      i = j
+      
+      
+  return ''.join(res)
+
+print(compress('ccaaatsss'))
