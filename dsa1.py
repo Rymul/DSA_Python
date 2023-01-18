@@ -28,3 +28,18 @@ def containsDuplicate2(nums) -> bool:
 
 print(containsDuplicate2([1,2,3,1]))
 print(containsDuplicate2([1,2,3]))
+
+
+
+# Max Value
+
+def max_value(nums):
+  max = float('-inf')
+  for num in nums:
+    if num > max:
+      max = num
+  return max
+    
+print(max_value([4, 7, 2, 8, 10, 9]))
+print(max_value([10, 5, 40, 40.3]))
+print(max_value([-5, -2, -1, -11]))
