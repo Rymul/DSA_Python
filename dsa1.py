@@ -43,3 +43,22 @@ def max_value(nums):
 print(max_value([4, 7, 2, 8, 10, 9]))
 print(max_value([10, 5, 40, 40.3]))
 print(max_value([-5, -2, -1, -11]))
+
+
+
+
+# Is Prime
+
+from math import sqrt, floor
+def is_prime(n):
+  if n < 2:
+    return False
+  for i in range(2, floor(sqrt(n)) +1):
+    if n % i == 0:
+      return False
+  return True
+
+print(is_prime(2))
+print(is_prime(3))
+print(is_prime(4))
+print(is_prime(5))
