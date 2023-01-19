@@ -264,3 +264,11 @@ def sum_list(head):
     cur = cur.next
   
   return total_sum
+
+
+#Recursive Sum Linked List
+
+def recursive_sum_list(head):
+  if head is None:
+    return 0
+  return head.val + recursive_sum_list(head.next)
