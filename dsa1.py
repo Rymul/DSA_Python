@@ -161,3 +161,17 @@ def pair_sum(numbers, target_sum):
     previous[num] = index
     
 print(pair_sum([3, 2, 5, 4, 1], 8))
+
+
+# Pair Product
+
+def pair_product(numbers, target_product):
+  previous_nums = {}
+  
+  for index, num in enumerate(numbers):
+    compliment = target_product / num
+    if compliment in previous_nums:
+      return (previous_nums[compliment], index)
+    previous_nums[num] = index
+
+print(pair_product([3, 2, 5, 4, 1], 8))
