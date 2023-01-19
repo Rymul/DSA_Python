@@ -317,3 +317,18 @@ def recursive_get_node_value(head, index):
     return head.val
   return get_node_value(head.next, index-1)
 
+
+# Reverse Linked List
+
+def reverse_list(head):
+  current = head
+  previous = None
+  next = head.next
+  
+  while current is not None:
+    next = current.next
+    current.next = previous
+    previous = current
+    current = next
+  return previous
+
