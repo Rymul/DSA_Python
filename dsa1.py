@@ -293,3 +293,17 @@ def recursive_linked_list_find(head, target):
   if head.val == target:
     return True
   return recursive_linked_list_find(head.next, target)
+
+
+# Get Node Value
+
+def get_node_value(head, index):
+  count = 0
+  current = head
+  
+  while current is not None:
+    if count == index:
+      return current.val
+    current = current.next
+    count += 1
+  return None
