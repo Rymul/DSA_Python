@@ -175,3 +175,35 @@ def pair_product(numbers, target_product):
     previous_nums[num] = index
 
 print(pair_product([3, 2, 5, 4, 1], 8))
+
+
+
+# Intersection
+
+# from collections import Counter
+
+# def intersection(a, b):
+#   res = []
+#   counter_b = Counter(b)
+  
+#   for num in a:
+#     if num in counter_b:
+#       res.append(num)
+#   return res
+
+
+def intersection(a, b):
+  # res = []
+  # items_set = set()
+  
+  # for item in a:
+  #   items_set.add(item)
+  # for ele in b:
+  #   if ele in items_set:
+  #     res.append(ele)
+  # return res
+  
+  items_set = set(a)
+  return [ ele for ele in b if ele in items_set ]
+
+print(intersection([4,2,1,6], [3,6,9,2,10]))
