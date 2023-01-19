@@ -227,3 +227,29 @@ def five_sort(nums):
   return nums
 
 print(five_sort([12, 5, 1, 5, 12, 7]))
+
+
+# Linked List Values
+
+class Node:
+  def __init__(self, val):
+    self.val = val
+    self.next = None
+
+def linked_list_values(head):
+  # res = []
+  # curr = head
+  # while curr is not None:
+  #   res.append(curr.val)
+  #   curr = curr.next
+  # return res
+  res = []
+  linked_list_helper(head, res)
+  return res
+  
+def linked_list_helper(head, res):
+  if head is None:
+    return
+  res.append(head.val)
+  linked_list_helper(head.next, res)
+  
