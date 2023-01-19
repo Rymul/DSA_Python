@@ -275,6 +275,7 @@ def recursive_sum_list(head):
 
 
 # Linked List Find
+
 def linked_list_find(head, target):
   cur = head
   while cur is not None:
@@ -282,3 +283,13 @@ def linked_list_find(head, target):
       return True
     cur = cur.next
   return False
+
+
+# Recursive Linked List Find
+
+def recursive_linked_list_find(head, target):
+  if head is None:
+    return False
+  if head.val == target:
+    return True
+  return recursive_linked_list_find(head.next, target)
