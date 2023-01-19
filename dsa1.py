@@ -146,3 +146,18 @@ def most_frequent_char(s) -> str:
     return freq_char
 
 print(most_frequent_char('bookeeper'))
+
+
+
+# Pair Sum
+
+def pair_sum(numbers, target_sum):
+  previous = {}
+  
+  for index, num in enumerate(numbers):
+    comp = target_sum - num
+    if comp in previous:
+      return (previous[comp], index)
+    previous[num] = index
+    
+print(pair_sum([3, 2, 5, 4, 1], 8))
