@@ -253,3 +253,14 @@ def linked_list_helper(head, res):
   res.append(head.val)
   linked_list_helper(head.next, res)
   
+
+#Sum Linked List
+def sum_list(head):
+  total_sum = 0
+  cur = head
+  
+  while cur is not None:
+    total_sum += cur.val
+    cur = cur.next
+  
+  return total_sum
