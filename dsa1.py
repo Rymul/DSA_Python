@@ -449,3 +449,25 @@ def recursive_is_univalue_list(head, prev_val = None):
   if prev_val is not None and head.val != prev_val:
     return False
   return recursive_is_univalue_list(head.next, head.val)
+
+
+# Longest Streak
+
+def longest_streak(head):
+  current = head
+  prev_val = None
+  count = 0
+  max_count = 0
+  
+  while current is not None:
+    if prev_val == current.val:
+      count += 1
+    else:
+      count = 1
+    if count > max_count:
+      max_count = count
+    prev_val = current.val
+    current = current.next
+      
+      
+  return max_count
