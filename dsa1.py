@@ -229,6 +229,9 @@ def five_sort(nums):
 print(five_sort([12, 5, 1, 5, 12, 7]))
 
 
+######### Linked Lists ############
+
+
 # Linked List Values
 
 class Node:
@@ -471,3 +474,21 @@ def longest_streak(head):
       
       
   return max_count
+
+
+# Remove Node
+
+def remove_node(head, target_val):
+  if head.val == target_val:
+    return head.next
+  current = head
+  prev = None
+  
+  while current is not None:
+    if current.val == target_val:
+      prev.next = current.next
+      break
+    prev = current
+    current = current.next
+  
+  return head
