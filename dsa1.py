@@ -409,3 +409,23 @@ def merge_lists(head_1, head_2):
   if current_2 is not None:
     tail.next = current_2
   return dummy_head.next
+
+
+# Recursive Merge Lists
+
+def recursive_merge_lists(head_1, head_2):
+  if head_1 is None and head_2 is None:
+    return None
+  if head_1 is None:
+    return head_2
+  if head_2 is None:
+    return head_1
+  
+  if head_1.val < head_2.val:
+    next_1 = head_1.next
+    head_1.next = recursive_merge_lists(next_1, head_2)
+    return head_1
+  else:
+    next_2 = head_2.next
+    head_2.next = recursive_merge_lists(head_1, next_2)
+    return head_2
