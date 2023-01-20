@@ -439,3 +439,13 @@ def is_univalue_list(head):
       return False
     current = current.next
   return True
+
+
+# Recursive Unique Value List
+
+def recursive_is_univalue_list(head, prev_val = None):
+  if head is None:
+    return True
+  if prev_val is not None and head.val != prev_val:
+    return False
+  return recursive_is_univalue_list(head.next, head.val)
