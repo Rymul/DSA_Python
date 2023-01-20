@@ -526,3 +526,21 @@ def insert_node(head, value, index):
     current = current.next
 
   return head
+
+
+# Recursive Insert Node
+
+def recursive_insert_node(head, value, index, count = 0):
+  if head is None:
+    return None
+  if index == 0:
+    new_head = Node(value)
+    new_head.next = head
+    return new_head
+  if count == index - 1:
+    temp = head.next
+    head.next = Node(value)
+    head.next.next = temp
+    return
+  recursive_insert_node(head.next, value, index, count + 1)
+  return head
