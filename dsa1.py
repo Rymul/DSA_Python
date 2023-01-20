@@ -429,3 +429,13 @@ def recursive_merge_lists(head_1, head_2):
     next_2 = head_2.next
     head_2.next = recursive_merge_lists(head_1, next_2)
     return head_2
+
+
+# Unique Value List
+def is_univalue_list(head):
+  current = head
+  while current is not None:
+    if head.val != current.val:
+      return False
+    current = current.next
+  return True
