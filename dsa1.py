@@ -546,7 +546,7 @@ def recursive_insert_node(head, value, index, count = 0):
   return head
 
 
-# Create List
+# Create Linked List
 
 def create_linked_list(values):
   dummy_head = Node(None)
@@ -555,3 +555,20 @@ def create_linked_list(values):
     tail.next = Node(val)
     tail = tail.next
   return dummy_head.next
+
+# Recursive Create Linked List
+
+def recursive_create_linked_list(values):
+  if len(values) == 0:
+    return None
+  
+  head = Node(values[0])
+  head.next = recursive_create_linked_list(values[1:])
+  return head
+
+def better_recursive_create_linked_list(values, i = 0):
+  if i == len(values):
+    return None
+  head = Node(values[i])
+  head.next = better_recursive_create_linked_list(values, i + 1)
+  return head
