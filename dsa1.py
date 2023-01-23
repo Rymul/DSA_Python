@@ -544,3 +544,14 @@ def recursive_insert_node(head, value, index, count = 0):
     return
   recursive_insert_node(head.next, value, index, count + 1)
   return head
+
+
+# Create List
+
+def create_linked_list(values):
+  dummy_head = Node(None)
+  tail = dummy_head
+  for val in values:
+    tail.next = Node(val)
+    tail = tail.next
+  return dummy_head.next
