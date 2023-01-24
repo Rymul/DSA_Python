@@ -574,7 +574,7 @@ def better_recursive_create_linked_list(values, i = 0):
   return head
 
 
-# Add Linked List
+# Add Linked Lists
 
 def add_lists(head_1, head_2):
   carry = 0
@@ -600,3 +600,24 @@ def add_lists(head_1, head_2):
       cur_2 = cur_2.next
     
   return dummy_head.next
+
+
+# Recursive Add Linked Lists
+
+def recursive_add_lists(head_1, head_2, carry = 0):
+  if head_1 is None and head_2 is None and carry == 0:
+    return None
+  
+  val_1 = 0 if head_1 is None else head_1.val
+  val_2 = 0 if head_2 is None else head_2.val
+  
+  sum = val_1 + val_2 + carry
+  next_carry = 1 if sum > 9 else 0
+  digit = sum % 10
+  res_node = Node(digit)
+  
+  next_1 = None if head_1 is None else head_1.next
+  next_2 = None if head_2 is None else head_2.next
+  
+  res_node.next = recursive_add_lists(next_1, next_2, next_carry)
+  return res_node
