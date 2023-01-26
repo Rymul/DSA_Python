@@ -122,7 +122,7 @@ def tree_min_value(root):
 
 # using DFS interative
 
-def interative_dfs_tree_min_value(root, min_val = float('inf')):
+def interative_dfs_tree_min_value(root):
     stack = [ root ]
     min_val = float('inf')
     while stack:
