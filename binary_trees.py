@@ -119,3 +119,18 @@ def tree_min_value(root):
         if current.right is not None:
             queue.append(current.right)
     return min_val
+
+# using DFS interative
+
+def interative_dfs_tree_min_value(root, min_val = float('inf')):
+    stack = [ root ]
+    min_val = float('inf')
+    while stack:
+        current = stack.pop()
+        if current.val < min_val:
+            min_val = current.val
+        if current.left is not None:
+            stack.append(current.left)
+        if current.right is not None:
+            stack.append(current.right)
+    return min_val
