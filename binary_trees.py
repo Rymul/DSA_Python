@@ -75,3 +75,22 @@ def bfs_tree_sum(root):
         if current.right is not None:
             queue.append(current.right)
     return total_sum
+
+# Tree Includes
+
+#using BFS
+
+def tree_includes(root, target):
+    if root is None:
+        return False
+    queue = deque( [root] )
+    while queue:
+        current = queue.popleft()
+        if current.val == target:
+            return True
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return False
+
