@@ -157,3 +157,27 @@ def max_path_sum(root):
     max_right = max_path_sum(root.right)
     return root.val + max(max_left, max_right)
   
+# Path Finder
+
+def path_finder(root, target):
+    res = _path_finder(root, target)
+    if res is None:
+        return None
+    return res[::-1]
+
+def _path_finder(root, target):
+    if root is None:
+        return None
+    if root.val == target:
+        return [root.val]
+ 
+    left_path = _path_finder(root.left, target)
+    if left_path is not None:
+        left_path.append(root.val)
+        return left_path
+    right_path = _path_finder(root.right, target)
+    if right_path is not None:
+        right_path.append(root.val)
+        return right_path
+  
+    return None
