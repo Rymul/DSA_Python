@@ -134,3 +134,13 @@ def interative_dfs_tree_min_value(root):
         if current.right is not None:
             stack.append(current.right)
     return min_val
+
+# using recursive DFS
+
+def recursive_dfs_tree_min_value(root):
+    if root is None:
+        return float('inf')
+    min_left = recursive_dfs_tree_min_value(root.left)
+    min_right = recursive_dfs_tree_min_value(root.right)
+    return min(root.val, min_left, min_right)
+    
