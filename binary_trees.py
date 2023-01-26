@@ -143,7 +143,6 @@ def recursive_dfs_tree_min_value(root):
     min_left = recursive_dfs_tree_min_value(root.left)
     min_right = recursive_dfs_tree_min_value(root.right)
     return min(root.val, min_left, min_right)
-    
 
 # Max Root to Leaf Sum
 
@@ -152,11 +151,10 @@ def max_path_sum(root):
         return float('-inf')
     if root.left is None and root.right is None:
         return root.val
-  
     max_left = max_path_sum(root.left)
     max_right = max_path_sum(root.right)
     return root.val + max(max_left, max_right)
-  
+
 # Path Finder
 
 def path_finder(root, target):
@@ -170,7 +168,6 @@ def _path_finder(root, target):
         return None
     if root.val == target:
         return [root.val]
- 
     left_path = _path_finder(root.left, target)
     if left_path is not None:
         left_path.append(root.val)
@@ -179,7 +176,6 @@ def _path_finder(root, target):
     if right_path is not None:
         right_path.append(root.val)
         return right_path
-  
     return None
 
 # Tree Value Count 
@@ -201,7 +197,6 @@ def tree_value_count(root, target):
         current = queue.popleft()
         if current.val == target:
             count += 1
-    
         if current.left is not None:
             queue.append(current.left)
         if current.right is not None:
@@ -213,7 +208,20 @@ def tree_value_count(root, target):
 def how_high(node):
     if node is None:
         return -1
-  
     left_height = how_high(node.left)
     right_height = how_high(node.right)
     return 1 + max(left_height, right_height)
+
+
+# Bottom Right Value
+
+def bottom_right_value(root):
+    queue = deque( [root] )
+    current = None
+    while queue:
+        current = queue.popleft()
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return current.val
