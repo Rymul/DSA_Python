@@ -48,3 +48,22 @@ def breadth_first_values(root):
         if current.right is not None:
             queue.append(current.right)
     return res
+
+
+# Sum Tree
+
+# using DFS
+
+def tree_sum(root):
+    if root is None:
+        return 0
+    return root.val + tree_sum(root.left) + tree_sum(root.right)
+
+# using BFS
+
+def bfs_tree_sum(root):
+    if root is None:
+        return 0
+    queue = deque( [root] )
+    while queue:
+        current = queue
