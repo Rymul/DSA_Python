@@ -181,3 +181,12 @@ def _path_finder(root, target):
         return right_path
   
     return None
+
+# Tree Value Count 
+
+# recursive 
+def recursive_tree_value_count(root, target):
+    if root is None:
+        return 0
+    match = 1 if root.val == target else 0
+    return match + recursive_tree_value_count(root.left, target) + recursive_tree_value_count(root.right, target)
