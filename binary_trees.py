@@ -190,3 +190,20 @@ def recursive_tree_value_count(root, target):
         return 0
     match = 1 if root.val == target else 0
     return match + recursive_tree_value_count(root.left, target) + recursive_tree_value_count(root.right, target)
+
+# using BFS
+def tree_value_count(root, target):
+    if root is None:
+        return 0
+    queue = deque( [root] )
+    count = 0
+    while queue:
+        current = queue.popleft()
+        if current.val == target:
+            count += 1
+    
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return count
