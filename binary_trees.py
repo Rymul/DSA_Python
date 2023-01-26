@@ -78,7 +78,7 @@ def bfs_tree_sum(root):
 
 # Tree Includes
 
-#using BFS
+# using BFS
 
 def tree_includes(root, target):
     if root is None:
@@ -94,3 +94,11 @@ def tree_includes(root, target):
             queue.append(current.right)
     return False
 
+# using DFS
+
+def dfs_tree_includes(root, target):
+    if root is None:
+        return False
+    if root.val == target:
+        return True
+    return dfs_tree_includes(root.left, target) or dfs_tree_includes(root.right, target)
