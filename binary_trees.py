@@ -102,3 +102,20 @@ def dfs_tree_includes(root, target):
     if root.val == target:
         return True
     return dfs_tree_includes(root.left, target) or dfs_tree_includes(root.right, target)
+
+# Tree Min Value
+
+# using BFS
+
+def tree_min_value(root):
+    queue = deque( [root] )
+    min_val = float('inf')
+    while queue:
+        current = queue.popleft()
+        if current.val < min_val:
+            min_val = current.val
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return min_val
