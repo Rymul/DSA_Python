@@ -144,3 +144,16 @@ def recursive_dfs_tree_min_value(root):
     min_right = recursive_dfs_tree_min_value(root.right)
     return min(root.val, min_left, min_right)
     
+
+# Max Root to Leaf Sum
+
+def max_path_sum(root):
+    if root is None:
+        return float('-inf')
+    if root.left is None and root.right is None:
+        return root.val
+  
+    max_left = max_path_sum(root.left)
+    max_right = max_path_sum(root.right)
+    return root.val + max(max_left, max_right)
+  
