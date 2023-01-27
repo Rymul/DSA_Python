@@ -251,7 +251,6 @@ def dfs_tree_levels(root):
         return []
     levels = []
     stack = [ (root, 0) ]
-  
     while stack:
         node, level_num = stack.pop()
         if len(levels) == level_num:
@@ -263,5 +262,23 @@ def dfs_tree_levels(root):
             stack.append((node.right, level_num + 1))
         if node.left is not None:
             stack.append((node.left, level_num + 1))
-    
+    return levels
+
+# BFS iterative
+
+def tree_levels(root):
+    if root is None:
+        return []
+    levels = []
+    queue = deque([ (root, 0) ])
+    while queue:
+        node, level_num = queue.popleft()
+        if len(levels) == level_num:
+            levels.append([node.val])
+        else:
+            levels[level_num].append(node.val)
+        if node.left is not None:
+            queue.append((node.left, level_num + 1))
+        if node.right is not None:
+            queue.append((node.right, level_num + 1))
     return levels
