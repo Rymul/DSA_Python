@@ -241,3 +241,27 @@ def all_tree_paths(root):
     for sub_path in right_paths:
         paths.append([root.val, *sub_path])
     return paths
+
+# Tree Levels
+
+# DFS iterative
+
+def dfs_tree_levels(root):
+    if root is None:
+        return []
+    levels = []
+    stack = [ (root, 0) ]
+  
+    while stack:
+        node, level_num = stack.pop()
+        if len(levels) == level_num:
+            levels.append([node.val])
+        else:
+            levels[level_num].append(node.val)
+
+        if node.right is not None:
+            stack.append((node.right, level_num + 1))
+        if node.left is not None:
+            stack.append((node.left, level_num + 1))
+    
+    return levels
