@@ -266,7 +266,7 @@ def dfs_tree_levels(root):
 
 # BFS iterative
 
-def tree_levels(root):
+def bfs_tree_levels(root):
     if root is None:
         return []
     levels = []
@@ -282,3 +282,21 @@ def tree_levels(root):
         if node.right is not None:
             queue.append((node.right, level_num + 1))
     return levels
+
+# Recursive DFS
+
+def tree_levels(root):
+    levels = []
+    fill_levels(root, levels, 0)
+    return levels
+
+def fill_levels(root, levels, level_num):
+    if root is None:
+        return
+    if len(levels) == level_num:
+        levels.append( [root.val] )
+    else:
+        levels[level_num].append(root.val)
+  
+    fill_levels(root.left, levels, level_num + 1)
+    fill_levels(root.right, levels, level_num + 1)
