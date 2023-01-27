@@ -300,3 +300,26 @@ def fill_levels(root, levels, level_num):
   
     fill_levels(root.left, levels, level_num + 1)
     fill_levels(root.right, levels, level_num + 1)
+
+
+# Level Averages
+
+from statistics import mean
+
+def level_averages(root):
+    levels = []
+    make_levels(root, levels, 0)
+    avg = []
+    for sub_list in levels:
+        avg.append(mean(sub_list))
+    return avg
+
+def make_levels(root, levels, level_num):
+    if root is None:
+        return
+    if len(levels) == level_num:
+        levels.append([root.val])
+    else:
+        levels[level_num].append(root.val)
+    make_levels(root.left, levels, level_num + 1)
+    make_levels(root.right, levels, level_num + 1)
