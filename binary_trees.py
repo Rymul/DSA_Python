@@ -323,3 +323,23 @@ def make_levels(root, levels, level_num):
         levels[level_num].append(root.val)
     make_levels(root.left, levels, level_num + 1)
     make_levels(root.right, levels, level_num + 1)
+
+
+# Leaf List
+
+# Iterative DFS
+
+def leaf_list(root):
+    if root is None:
+        return []
+    leaves = []
+    stack = [root]
+    while stack:
+        current = stack.pop()
+        if current.left is None and current.right is None:
+            leaves.append(current.val)
+        if current.right is not None:
+            stack.append(current.right)
+        if current.left is not None:
+            stack.append(current.left)
+    return leaves
