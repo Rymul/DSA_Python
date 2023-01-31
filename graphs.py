@@ -142,7 +142,7 @@ def island_count(grid):
     visited = set()
     count = 0
     for row in range(len(grid)):
-        for col in range(len(grid)):
+        for col in range(len(grid[0])):
             if travel(grid, row, col, visited) is True:
                 count += 1
     return count
@@ -163,3 +163,33 @@ def travel(grid, row, col, visited):
     travel(grid, row, col - 1, visited)
     travel(grid, row, col + 1, visited)
     return True
+
+# Minimum Size Island
+
+def minimum_island(grid):
+    visited = set()
+    smallest = float('inf')
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            size = island_size(grid, r, c, visited)
+            if size > 0 and size < smallest:
+                smallest = size
+    return smallest
+
+def island_size(grid, r, c, visited):
+    r_inbounds = 0 <=r < len(grid)
+    c_inbounds = 0 <=c < len(grid[0])
+    if not r_inbounds or not c_inbounds:
+        return 0
+    if grid[r][c] == "W":
+        return 0
+    pos = (r, c)
+    if pos in visited:
+        return 0
+    visited.add(pos)
+    size = 1
+    size += island_size(grid, r -1, c, visited)
+    size += island_size(grid, r +1, c, visited)
+    size += island_size(grid, r, c -1, visited)
+    size += island_size(grid, r, c +1, visited)
+    return size
