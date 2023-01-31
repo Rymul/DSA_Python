@@ -135,3 +135,31 @@ def make_graph(edges):
         graph[a].append(b)
         graph[b].append(a)
     return graph
+
+# Island Count
+
+def island_count(grid):
+    visited = set()
+    count = 0
+    for row in range(len(grid)):
+        for col in range(len(grid)):
+            if travel(grid, row, col, visited) is True:
+                count += 1
+    return count
+def travel(grid, row, col, visited):
+    row_inbounds = 0 <= row < len(grid)
+    col_inbounds = 0 <= col < len(grid[0])
+    if not row_inbounds or not col_inbounds:
+        return False
+    if grid[row][col] == "W":
+        return False
+    pos = (row, col)
+    if pos in visited:
+        return False
+    visited.add(pos)
+
+    travel(grid, row - 1, col, visited)
+    travel(grid, row + 1, col, visited)
+    travel(grid, row, col - 1, visited)
+    travel(grid, row, col + 1, visited)
+    return True
