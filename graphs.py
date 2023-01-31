@@ -105,3 +105,33 @@ def adventure(graph, current, visited):
     for neighbor in graph[current]:
         count += adventure(graph, neighbor, visited)
     return count
+
+
+# Shortest Path
+
+def shortest_path(edges, node_A, node_B):
+    visited = set([ node_A ])
+    graph = make_graph(edges)
+    queue = deque([ (node_A, 0) ])
+
+    while queue:
+        current, distance = queue.popleft()  
+        if current == node_B:
+            return distance
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append((neighbor, distance + 1))
+    return -1
+
+def make_graph(edges):
+    graph = {}
+    for edge in edges:
+        a, b = edge
+        if a not in graph:
+            graph[a] = []
+        if b not in graph:
+            graph[b] = []
+        graph[a].append(b)
+        graph[b].append(a)
+    return graph
