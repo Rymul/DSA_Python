@@ -77,7 +77,7 @@ def connected_components_count(graph):
         if explore(graph, node, visited) is True:
             count += 1
     return count
-  
+
 def explore(graph, current, visited):
     if current in visited:
         return False
@@ -85,3 +85,23 @@ def explore(graph, current, visited):
     for neighbor in graph[current]:
         explore(graph, neighbor, visited)
     return True
+
+# Largest Component
+
+def largest_component(graph):
+    visited = set()
+    max_size = 0
+    for node in graph:
+        count = adventure(graph, node, visited)
+        if count > max_size:
+            max_size = count
+    return max_size
+
+def adventure(graph, current, visited):
+    if current in visited:
+        return 0
+    visited.add(current)
+    count = 1
+    for neighbor in graph[current]:
+        count += adventure(graph, neighbor, visited)
+    return count
