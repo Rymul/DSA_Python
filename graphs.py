@@ -399,7 +399,6 @@ def best_bridge(grid):
     for pos in main_island:
         row, col = pos
         queue.append((row, col, 0))
-    
     while queue:
         row, col, distance = queue.popleft()
         if grid[row][col] == 'L' and (row,col) not in main_island:
@@ -413,12 +412,12 @@ def best_bridge(grid):
             if is_inbouds(grid, neighbor_row, neighbor_col) and neighbor_pos not in visited:
                 visited.add(neighbor_pos)
                 queue.append((neighbor_row, neighbor_col, distance + 1))
-      
+
 def is_inbouds(grid, row, col):
     row_inbouds = 0 <= row < len(grid)
     col_inbouds = 0 <= col < len(grid[0])
     return row_inbouds and col_inbouds
-  
+
 def find_an_island(grid, row, col, visited):
     if not is_inbouds(grid, row, col) or grid[row][col] == "W":
         return visited
@@ -442,3 +441,41 @@ construction_zone = [
   ["W", "W", "W", "W", "W"],
 ]
 print(best_bridge(construction_zone))
+
+# Has Cycle
+
+def has_cycle(graph):
+    visiting = set()
+    visited = set()
+    for node in graph:
+        if cycle_detect(graph, node, visiting, visited):
+            return True
+    return False
+
+def cycle_detect(graph, node, visiting, visited):
+    if node in visited:
+        return False
+    if node in visiting:
+        return True
+    visiting.add(node)
+    for neighbor in graph[node]:
+        if cycle_detect(graph, neighbor, visiting, visited):
+            return True
+    visiting.remove(node)
+    visited.add(node)
+    return False
+
+print(has_cycle({
+  "a": ["b", "c"],
+  "b": [],
+  "c": [],
+  "e": ["f"],
+  "f": ["e"],
+})) # -> True
+
+print(has_cycle({
+  "a": ["b", "c"],
+  "b": ["c"],
+  "c": ["d"],
+  "d": [],
+})) # -> False
