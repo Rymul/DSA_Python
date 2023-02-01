@@ -37,6 +37,19 @@ def bfs_has_path(graph, src, dst):
             queue.append(neighbor)
     return False
 
+graph1 = {
+  'f': ['g', 'i'],
+  'g': ['h'],
+  'h': [],
+  'i': ['g', 'k'],
+  'j': ['i'],
+  'k': []
+}
+
+print(has_path(graph1, 'f', 'k')) # True
+print(recursive_has_path(graph1, 'f', 'k')) # True
+print(bfs_has_path(graph1, 'f', 'k')) # True
+
 # Undirected Path
 
 def undirected_path(edges, node_A, node_B):
@@ -68,6 +81,16 @@ def build_graph(edges):
     return graph
 
 
+edges1 = [
+  ('i', 'j'),
+  ('k', 'i'),
+  ('m', 'k'),
+  ('k', 'l'),
+  ('o', 'n')
+]
+
+print(undirected_path(edges1, 'j', 'm')) # -> True
+
 # Connected Components Count
 
 def connected_components_count(graph):
@@ -85,6 +108,17 @@ def explore(graph, current, visited):
     for neighbor in graph[current]:
         explore(graph, neighbor, visited)
     return True
+
+print(connected_components_count({
+  0: [8, 1, 5],
+  1: [0],
+  5: [0, 8],
+  8: [0, 5],
+  2: [3, 4],
+  3: [2, 4],
+  4: [3, 2]
+})) # -> 2
+
 
 # Largest Component
 
@@ -106,6 +140,14 @@ def adventure(graph, current, visited):
         count += adventure(graph, neighbor, visited)
     return count
 
+print(largest_component({
+  1: [2],
+  2: [1,8],
+  6: [7],
+  9: [8],
+  7: [6, 8],
+  8: [9, 7, 2]
+})) # -> 6
 
 # Shortest Path
 
@@ -136,6 +178,19 @@ def make_graph(edges):
         graph[b].append(a)
     return graph
 
+edges1 = [
+  ['a', 'c'],
+  ['a', 'b'],
+  ['c', 'b'],
+  ['c', 'd'],
+  ['b', 'd'],
+  ['e', 'd'],
+  ['g', 'f']
+]
+
+print(shortest_path(edges1, 'a', 'e')) # -> 3
+
+
 # Island Count
 
 def island_count(grid):
@@ -163,6 +218,16 @@ def travel(grid, row, col, visited):
     travel(grid, row, col - 1, visited)
     travel(grid, row, col + 1, visited)
     return True
+
+islands1 = [
+  ['L', 'W', 'W', 'L', 'W'],
+  ['L', 'W', 'W', 'L', 'L'],
+  ['W', 'L', 'W', 'L', 'W'],
+  ['W', 'W', 'W', 'W', 'W'],
+  ['W', 'W', 'L', 'L', 'L'],
+]
+
+print(island_count(islands1)) # -> 4
 
 # Minimum Size Island
 
@@ -194,6 +259,17 @@ def island_size(grid, r, c, visited):
     size += island_size(grid, r, c +1, visited)
     return size
 
+islands2 = [
+  ['W', 'L', 'W', 'W', 'W'],
+  ['W', 'L', 'W', 'W', 'W'],
+  ['W', 'W', 'W', 'L', 'W'],
+  ['W', 'W', 'L', 'L', 'W'],
+  ['L', 'W', 'W', 'L', 'L'],
+  ['L', 'L', 'W', 'W', 'W'],
+]
+
+print(minimum_island(islands2)) # -> 2
+
 # Closest Carrot
 
 def closest_carrot(grid, starting_row, starting_col):
@@ -215,6 +291,21 @@ def closest_carrot(grid, starting_row, starting_col):
                 queue.append((neighbor_row, neighbor_col, distance +1))
                 visited.add(pos)
     return -1
+
+
+farm = [
+  ['O', 'O', 'X', 'X', 'X'],
+  ['O', 'X', 'X', 'X', 'C'],
+  ['O', 'X', 'O', 'X', 'X'],
+  ['O', 'O', 'O', 'O', 'O'],
+  ['O', 'X', 'X', 'X', 'X'],
+  ['O', 'O', 'O', 'O', 'O'],
+  ['O', 'O', 'C', 'O', 'O'],
+  ['O', 'O', 'O', 'O', 'O'],
+]
+
+print(closest_carrot(farm, 3, 4)) # -> 9
+
 
 # Longest Path
 
@@ -239,6 +330,18 @@ def traverse_distance(graph, node, distance):
     distance[node] = 1 + max_length
     return distance[node]
 
+path_graph = {
+  'a': ['c', 'b'],
+  'b': ['c'],
+  'c': [],
+  'q': ['r'],
+  'r': ['s', 'u', 't'],
+  's': ['t'],
+  't': ['u'],
+  'u': []
+}
+
+print(longest_path(path_graph)) # -> 4
 
 # Semesters Required
 
@@ -271,3 +374,71 @@ def create_graph(num_courses, prereqs):
         a, b = prereq
         graph[a].append(b)
     return graph
+
+n_courses = 6
+prerequisits = [
+  (1, 2),
+  (2, 4),
+  (3, 5),
+  (0, 5),
+]
+print(semesters_required(n_courses, prerequisits)) # -> 3
+
+# Best Bridge
+
+def best_bridge(grid):
+    main_island = None
+    for row in range(len(grid)):
+        for col in range(len(grid[0])):
+            potenial_island = find_an_island(grid, row, col, set())
+            if len(potenial_island) > 0:
+                main_island = potenial_island
+                break
+    visited = set(main_island)
+    queue = deque([])
+    for pos in main_island:
+        row, col = pos
+        queue.append((row, col, 0))
+    
+    while queue:
+        row, col, distance = queue.popleft()
+        if grid[row][col] == 'L' and (row,col) not in main_island:
+            return distance -1
+        deltas = [(-1,0),(1,0),(0,-1),(0,1)]
+        for delta in deltas:
+            delta_row, delta_col = delta
+            neighbor_row = row + delta_row
+            neighbor_col = col + delta_col
+            neighbor_pos = (neighbor_row, neighbor_col)
+            if is_inbouds(grid, neighbor_row, neighbor_col) and neighbor_pos not in visited:
+                visited.add(neighbor_pos)
+                queue.append((neighbor_row, neighbor_col, distance + 1))
+      
+def is_inbouds(grid, row, col):
+    row_inbouds = 0 <= row < len(grid)
+    col_inbouds = 0 <= col < len(grid[0])
+    return row_inbouds and col_inbouds
+  
+def find_an_island(grid, row, col, visited):
+    if not is_inbouds(grid, row, col) or grid[row][col] == "W":
+        return visited
+    pos = (row, col)
+    if pos in visited:
+        return visited
+    visited.add(pos)
+
+    find_an_island(grid, row -1, col, visited)
+    find_an_island(grid, row +1, col, visited)
+    find_an_island(grid, row, col -1, visited)
+    find_an_island(grid, row, col +1, visited)
+    return visited
+
+construction_zone = [
+  ["W", "W", "W", "L", "L"],
+  ["L", "L", "W", "W", "L"],
+  ["L", "L", "L", "W", "L"],
+  ["W", "L", "W", "W", "W"],
+  ["W", "W", "W", "W", "W"],
+  ["W", "W", "W", "W", "W"],
+]
+print(best_bridge(construction_zone))
