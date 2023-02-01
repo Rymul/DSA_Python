@@ -479,3 +479,57 @@ print(has_cycle({
   "c": ["d"],
   "d": [],
 })) # -> False
+
+
+# Prereqs Possible
+
+def prereqs_possible(num_courses, prereqs) -> bool:
+    """Function returns boolean if it is possible to take all courses"""
+    graph = construct_graph(num_courses, prereqs)
+    visiting = set()
+    visited = set()
+    for node in graph:
+        if has_class_cycle(graph, node, visiting, visited):
+            return False
+    return True
+
+
+def has_class_cycle(graph, node, visiting, visited) -> bool:
+    """Function uses DFS to traverse the graph and check for cycles"""
+    if node in visited:
+        return False
+    if node in visiting:
+        return True
+    visiting.add(node)
+
+    for neighbor in graph[node]:
+        if has_class_cycle(graph, neighbor, visiting, visited):
+            return True
+    visiting.remove(node)
+    visited.add(node)
+    return False
+
+def construct_graph(num_courses, prereqs) -> dict:
+    """Function creates adjacency list of classes"""
+    graph = {}
+    for num in range(num_courses):
+        graph[num] = []
+    for prereq in prereqs:
+        a, b = prereq
+        if a in graph:
+            graph[a].append(b)
+    return graph
+
+
+
+
+num_classes = 6
+prereqs2 = [
+  (0, 1),
+  (2, 3),
+  (0, 2),
+  (1, 3),
+  (4, 5),
+]
+print(prereqs_possible(num_classes, prereqs2)) # -> True
+
