@@ -53,9 +53,11 @@ print(tribonacci(37)) # 1132436852
 # Sum Possible
 
 def sum_possible(amount, numbers) -> bool:
+    """returns boolean result from _sum_possible()"""
     return _sum_possible(amount, numbers, {})
 
 def _sum_possible(amount, numbers, memo):
+    """returns boolean indicating whether any combo of numbers can sum to amount"""
     if amount in memo:
         return memo[amount]
     if amount < 0:
@@ -72,3 +74,33 @@ def _sum_possible(amount, numbers, memo):
 print(sum_possible(15, [6, 2, 10, 19])) # False
 print(sum_possible(271, [10, 8, 265, 24])) # False
 print(sum_possible(103, [6, 20, 1])) # True
+
+
+# Min Change
+
+def min_change(amount, coins) -> int:
+    """returns -1 if not possible to make change or answer from _min_change()"""
+    ans = _min_change(amount, coins, {})
+    if ans == float('inf'):
+        return -1
+    return ans
+
+def _min_change(amount, coins, memo) -> int:
+    """returns number of coins needed to make change for amount"""
+    if amount in memo:
+        return memo[amount]
+    if amount < 0:
+        return float('inf')
+    if amount == 0:
+        return 0
+    min_coins = float('inf')
+    for coin in coins:
+        num_coins = 1 + _min_change(amount - coin, coins, memo)
+        if num_coins < min_coins:
+            min_coins = num_coins
+    memo[amount] = min_coins
+    return min_coins
+
+print(min_change(13, [1, 9, 5, 14, 30])) # 5
+print(min_change(200, [1, 5, 10, 25])) # 8
+print(min_change(271, [10, 8, 265, 24])) # -1
