@@ -165,3 +165,65 @@ print(count_paths(g1)) # 5
 print(count_paths(g2)) # 42
 print(count_paths(g3)) # 0
 print(count_paths(g4)) # 3190434
+
+
+# Max Path Sum
+
+def max_path_sum(grid) -> int:
+    """Function returns the max path sum from top left to bottom right in a grid"""
+    return _max_path_sum(grid, 0, 0, {})
+
+def _max_path_sum(grid, row, col, memo) -> int:
+    pos = (row, col)
+    if pos in memo:
+        return memo[pos]
+    if row == len(grid) or col == len(grid[0]):
+        return float('-inf')
+    if row == len(grid) - 1 and col == len(grid[0]) -1:
+        return grid[row][col]
+    down_sum = _max_path_sum(grid, row +1, col, memo)
+    right_sum = _max_path_sum(grid, row, col +1, memo)
+    memo[pos] = grid[row][col] + max(down_sum, right_sum)
+    return memo[pos]
+grid1 = [
+  [1, 2, 8, 1],
+  [3, 10, 12, 10],
+  [4, 0, 6, 3],
+]
+grid2 = [
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+]
+grid3 = [
+  [1, 1, 3, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 2, 1, 1, 6, 1, 1, 5, 1, 1, 0, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 5, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+  [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [2, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1],
+  [2, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 9, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+]
+print(max_path_sum(grid1)) # 39
+print(max_path_sum(grid2)) # 27
+print(max_path_sum(grid3)) # 56
