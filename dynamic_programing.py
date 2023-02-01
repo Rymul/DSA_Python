@@ -1,4 +1,5 @@
 # Fibonacci Sequence
+import math
 
 def fib(n) -> int:
     """returns the nth_fibonacci number"""
@@ -264,3 +265,27 @@ nums3 = [
 print(non_adjacent_sum(nums1)) # 19
 print(non_adjacent_sum(nums2)) # 488
 print(non_adjacent_sum(nums3)) # 1465
+
+# Summing Squares
+
+
+def summing_squares(n) -> int:
+    """returns the minimum number of perfect squares that sum to n"""
+    return _summing_squares(n, {})
+
+def _summing_squares(n, memo) -> int:
+    if n in memo:
+        return memo[n]
+    if n == 0:
+        return 0
+    min_squares = float('inf')
+    for i in range(1, math.floor(math.sqrt(n)) +1):
+        square = i * i
+        num_square = 1 + _summing_squares(n - square, memo)
+        min_squares = min(num_square, min_squares)
+    memo[n] = min_squares
+    return memo[n]
+
+print(summing_squares(8)) # 2
+print(summing_squares(50)) # 2
+print(summing_squares(68)) # 2
