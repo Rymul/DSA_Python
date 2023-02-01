@@ -554,7 +554,8 @@ def knight_attack(n, kr, kc, pr, pc) -> int:
     return None
 
 
-def get_knight_positions(n, kr, kc):
+def get_knight_positions(n, kr, kc) -> list:
+    """Find all possible positions knight can move to"""
     positions = [
         (kr + 2, kc + 1),
         (kr - 2, kc + 1),
