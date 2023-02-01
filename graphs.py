@@ -533,3 +533,50 @@ prereqs2 = [
 ]
 print(prereqs_possible(num_classes, prereqs2)) # -> True
 
+
+# Knight Attack
+
+def knight_attack(n, kr, kc, pr, pc) -> int:
+    """Function returns number of moves it takes a knight to attack a pawn"""
+    visited = set()
+    visited.add((kr, kc))
+    queue = deque([(kr, kc, 0)])
+    while queue:
+        row, col, moves = queue.popleft()
+        if (row, col) == (pr, pc):
+            return moves
+        neighbor_positions = get_knight_positions(n, row, col)
+        for neighbor_pos in neighbor_positions:
+            if neighbor_pos not in visited:
+                n_row, n_col = neighbor_pos
+                queue.append((n_row, n_col, moves +1))
+                visited.add(neighbor_pos)
+    return None
+
+
+def get_knight_positions(n, kr, kc):
+    positions = [
+        (kr + 2, kc + 1),
+        (kr - 2, kc + 1),
+        (kr + 2, kc - 1),
+        (kr - 2, kc - 1),
+        (kr + 1, kc + 2),
+        (kr - 1, kc + 2),
+        (kr + 1, kc - 2),
+        (kr - 1, kc - 2)
+    ]
+
+    valid_positions = []
+    for pos in positions:
+        r, c = pos
+        if 0 <= r < n and 0 <= c < n:
+            valid_positions.append(pos)
+    return valid_positions
+
+
+
+
+
+print(knight_attack(8, 1, 1, 2, 2)) # -> 2
+print(knight_attack(24, 4, 7, 19, 20)) # -> 10
+print(knight_attack(3, 0, 0, 1, 1)) # -> None
