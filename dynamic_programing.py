@@ -227,3 +227,40 @@ grid3 = [
 print(max_path_sum(grid1)) # 39
 print(max_path_sum(grid2)) # 27
 print(max_path_sum(grid3)) # 56
+
+
+# Non Adjacent Sum
+
+def non_adjacent_sum(nums):
+    """Returns the max non adjacent sum of list nums"""
+    return _non_adjacent_sum(nums, 0, {})
+
+def _non_adjacent_sum(nums, i, memo):
+    if i in memo:
+        return memo[i]
+    if i >= len(nums):
+        return 0
+    include = nums[i] + _non_adjacent_sum(nums, i + 2, memo)
+    exclude =  _non_adjacent_sum(nums, i + 1, memo)
+    memo[i] = max(include, exclude)
+    return memo[i]
+
+nums1 = [7, 5, 5, 12]
+nums2 = [
+  72, 62, 10,  6, 20, 19, 42,
+  46, 24, 78, 30, 41, 75, 38,
+  23, 28, 66, 55, 12, 17, 9,
+  12, 3, 1, 19, 30, 50, 20
+]
+nums3 = [
+  72, 62, 10,  6, 20, 19, 42, 46, 24, 78,
+  30, 41, 75, 38, 23, 28, 66, 55, 12, 17,
+  83, 80, 56, 68,  6, 22, 56, 96, 77, 98,
+  61, 20,  0, 76, 53, 74,  8, 22, 92, 37,
+  30, 41, 75, 38, 23, 28, 66, 55, 12, 17,
+  72, 62, 10,  6, 20, 19, 42, 46, 24, 78,
+  42
+]
+print(non_adjacent_sum(nums1)) # 19
+print(non_adjacent_sum(nums2)) # 488
+print(non_adjacent_sum(nums3)) # 1465
