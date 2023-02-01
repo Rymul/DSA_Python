@@ -22,3 +22,30 @@ print(fib(4)) # 3
 print(fib(5)) # 5
 print(fib(35)) # 9227465
 print(fib(46)) # 1836311903
+
+
+# Tribonacci Number
+
+def tribonacci(n) -> int:
+    """Returns the nth tribonacci number"""
+    return _tribonacci(n, {})
+
+def _tribonacci(n, memo) -> int | dict:
+    """Returns the nth tribonacci number and a dictionary used for memoization"""
+    if n in memo:
+        return memo[n]
+    if n == 0:
+        return 0
+    if n == 1:
+        return 0
+    if n == 2:
+        return 1
+    memo[n] = _tribonacci(n-1, memo) + _tribonacci(n-2, memo) + _tribonacci(n-3, memo)
+    return memo[n]
+
+print(tribonacci(0)) # 0
+print(tribonacci(1)) # 0
+print(tribonacci(2)) # 1
+print(tribonacci(5)) # 4
+print(tribonacci(20)) # 35890
+print(tribonacci(37)) # 1132436852
