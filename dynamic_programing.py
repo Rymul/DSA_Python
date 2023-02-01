@@ -104,3 +104,64 @@ def _min_change(amount, coins, memo) -> int:
 print(min_change(13, [1, 9, 5, 14, 30])) # 5
 print(min_change(200, [1, 5, 10, 25])) # 8
 print(min_change(271, [10, 8, 265, 24])) # -1
+
+
+# Count Paths
+
+def count_paths(grid) -> int:
+    """Function returns result of _count_paths"""
+    return _count_paths(grid, 0, 0, {})
+  
+def _count_paths(grid, row, col, memo) -> int:
+    """Function returns the number of paths from top right to bottom left in the grid"""
+    pos = (row, col)
+    if pos in memo:
+        return memo[pos]
+    if row == len(grid) or col == len(grid[0]) or grid[row][col] == "X":
+        return 0
+    if row == len(grid) -1 and col == len(grid[0]) -1:
+        return 1
+    down_count = _count_paths(grid, row +1, col, memo)
+    right_count = _count_paths(grid, row, col +1, memo)
+    memo[pos] = down_count + right_count
+    return memo[pos]
+g1 = [
+  ["O", "O", "X"],
+  ["O", "O", "O"],
+  ["O", "O", "O"],
+]
+g2 = [
+  ["O", "O", "X", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "X"],
+  ["X", "O", "O", "O", "O", "O"],
+  ["X", "X", "X", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "O"],
+]
+g3 = [
+  ["O", "O", "X", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "X"],
+  ["X", "O", "O", "O", "O", "O"],
+  ["X", "X", "X", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "X"],
+]
+g4 = [
+  ["O", "O", "X", "X", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "X", "X", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "X", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O", "O"],
+  ["X", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O", "O"],
+  ["X", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "X", "X", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O", "X", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O"],
+  ["X", "X", "X", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "X", "X", "O", "O", "O", "O", "X", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "X", "X", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O"],
+  ["O", "O", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O", "O"],
+]
+print(count_paths(g1)) # 5
+print(count_paths(g2)) # 42
+print(count_paths(g3)) # 0
+print(count_paths(g4)) # 3190434
