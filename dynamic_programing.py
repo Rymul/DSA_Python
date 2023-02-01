@@ -49,3 +49,26 @@ print(tribonacci(2)) # 1
 print(tribonacci(5)) # 4
 print(tribonacci(20)) # 35890
 print(tribonacci(37)) # 1132436852
+
+# Sum Possible
+
+def sum_possible(amount, numbers) -> bool:
+    return _sum_possible(amount, numbers, {})
+
+def _sum_possible(amount, numbers, memo):
+    if amount in memo:
+        return memo[amount]
+    if amount < 0:
+        return False
+    if amount == 0:
+        return True
+    for num in numbers:
+        if _sum_possible(amount - num, numbers, memo):
+            memo[amount] = True
+            return True
+    memo[amount] = False
+    return False
+
+print(sum_possible(15, [6, 2, 10, 19])) # False
+print(sum_possible(271, [10, 8, 265, 24])) # False
+print(sum_possible(103, [6, 20, 1])) # True
