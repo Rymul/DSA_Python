@@ -289,3 +289,30 @@ def _summing_squares(n, memo) -> int:
 print(summing_squares(8)) # 2
 print(summing_squares(50)) # 2
 print(summing_squares(68)) # 2
+
+# Counting Change
+
+def counting_change(amount, coins) -> int:
+    """Returns how many different ways change can be made with coins for amount"""
+    return _counting_change(amount, coins, 0, {})
+
+
+def _counting_change(amount, coins, i, memo) -> int:
+    key = (amount, i)
+    if key in memo:
+        return memo[key]
+    if amount == 0:
+        return 1
+    if i == len(coins):
+        return 0
+    coin = coins[i]
+    total_ways = 0
+    for qty in range(0, (amount // coin) + 1):
+        remainder = amount - (qty * coin)
+        total_ways += _counting_change(remainder, coins, i + 1, memo)
+    memo[key] = total_ways
+    return total_ways
+
+print(counting_change(8, [1, 2, 3])) # 10
+print(counting_change(512, [1, 5, 10, 25])) # 20119
+print(counting_change(240, [1, 2, 3, 4, 5, 6, 7, 8, 9])) # 1525987916
