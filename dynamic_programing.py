@@ -1,5 +1,7 @@
-# Fibonacci Sequence
 import math
+
+
+# Fibonacci Sequence
 
 def fib(n) -> int:
     """returns the nth_fibonacci number"""
@@ -316,3 +318,34 @@ def _counting_change(amount, coins, i, memo) -> int:
 print(counting_change(8, [1, 2, 3])) # 10
 print(counting_change(512, [1, 5, 10, 25])) # 20119
 print(counting_change(240, [1, 2, 3, 4, 5, 6, 7, 8, 9])) # 1525987916
+
+
+def array_stepper(numbers) -> bool:
+    """Indicates whether or not it is possible to reach the last position of the list
+    taking steps <= the current number"""
+    return _array_stepper(numbers, 0, {})
+
+def _array_stepper(numbers, i, memo) -> bool:
+    if i in memo:
+        return memo[i]
+    if i >= len(numbers) -1:
+        return True
+
+    max_step = numbers[i]
+    for step in range(1, max_step+1):
+        if _array_stepper(numbers, step + i, memo):
+            memo[i] = True
+            return True
+    memo[i] = False
+    return False
+
+print(array_stepper([2, 4, 2, 0, 0, 1])) # True
+print(array_stepper([4, 1, 2, 1, 1, 1, 0, 4])) # False
+print(array_stepper([ 
+  31, 30, 29, 28, 27,
+  26, 25, 24, 23, 22,
+  21, 20, 19, 18, 17,
+  16, 15, 14, 13, 12,
+  11, 10, 9, 8, 7, 6,
+  5, 3, 2, 1, 0, 0, 0
+])) # False
