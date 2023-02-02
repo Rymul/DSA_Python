@@ -377,3 +377,32 @@ def _max_palin_subsequence(string, i, j, memo):
 
 print(max_palin_subsequence("xyzaxxzy")) # 6
 print(max_palin_subsequence("enamelpinportlandtildecoldpressedironyflannelsemioticsedisonbulbfashionaxe")) # 31
+
+
+# Max Overlap Subsequence
+
+def overlap_subsequence(string_1, string_2):
+    """returns the length of the longest overlapping subsequence"""
+    return _overlap_subsequence(string_1, string_2, 0, 0, {})
+
+def _overlap_subsequence(s_1, s_2, i, j, memo):
+    key = (i, j)
+    if key in memo:
+        return memo[key]
+    if i == len(s_1) or j == len(s_2):
+        return 0
+    if s_1[i] == s_2[j]:
+        memo[key] = 1 + _overlap_subsequence(s_1, s_2, i + 1, j + 1, memo)
+    else:
+        memo[key] = max(
+        _overlap_subsequence(s_1, s_2, i + 1, j, memo),
+        _overlap_subsequence(s_1, s_2, i, j + 1, memo)
+        )
+    return memo[key]
+
+print(overlap_subsequence("xcyats", "criaotsi")) # 4
+print(overlap_subsequence("kinfolklivemustache", "bespokekinfolksnackwave")) # 11
+print(overlap_subsequence(
+  "mumblecorebeardleggingsauthenticunicorn",
+  "succulentspughumblemeditationlocavore"
+)) # 15
