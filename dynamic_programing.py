@@ -410,7 +410,7 @@ print(overlap_subsequence(
 # Can Concat
 
 def can_concat(s, words) -> bool:
-    """return boolean indicating whether or not it is possible 
+    """returns a boolean indicating whether or not it is possible 
     to concatenate words of the list together to form the string"""
     return _can_concat(s, words, {})
 
@@ -431,3 +431,31 @@ def _can_concat(s, words, memo) -> bool:
 print(can_concat("foodisgood", ["is", "g", "ood", "f"])) # True
 print(can_concat("santahat", ["santah", "san", "hat", "tahat"])) # True
 print(can_concat("bbbbbbbbbbbbbbbbbbbbbbbbbbbbby", ["b", "bb", "bbb", "bbbb", "bbbbb", "bbbbbb"])) # False
+
+# Quickest Concat
+
+def quickest_concat(s, words):
+    """return the mimimum possible way to concatenate 
+    words of the list together to form the string"""
+    res = _quickest_concat(s, words, {}) 
+    if res== float('inf'):
+        return -1
+    return res
+  
+def _quickest_concat(s, words, memo):
+    if s in memo:
+        return memo[s]
+    if s == "":
+        return 0
+    min_words = float('inf')
+    for word in words:
+        if s.startswith(word):
+            suffix = s[len(word):]
+            amount = 1 + _quickest_concat(suffix, words, memo)
+            min_words = min(amount, min_words)
+    memo[s] = min_words
+    return min_words
+
+print(quickest_concat('respondorreact', ['re', 'or', 'spond', 'act', 'respond'])) # 4
+print(quickest_concat('simchacindy', ['sim', 'simcha', 'acindy'])) # -1
+print(quickest_concat('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', ['u', 'uu', 'uuu', 'uuuu', 'uuuuu'])) # 7
