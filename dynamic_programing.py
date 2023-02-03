@@ -406,3 +406,28 @@ print(overlap_subsequence(
   "mumblecorebeardleggingsauthenticunicorn",
   "succulentspughumblemeditationlocavore"
 )) # 15
+
+# Can Concat
+
+def can_concat(s, words) -> bool:
+    """return boolean indicating whether or not it is possible 
+    to concatenate words of the list together to form the string"""
+    return _can_concat(s, words, {})
+
+def _can_concat(s, words, memo) -> bool:
+    if s in memo:
+        return memo[s]
+    if s == "":
+        return True 
+    for word in words:
+        if s.startswith(word):
+            suffix = s[len(word):]
+            if _can_concat(suffix, words, memo):
+                memo[s] = True
+                return True
+    memo[s] = False
+    return False
+
+print(can_concat("foodisgood", ["is", "g", "ood", "f"])) # True
+print(can_concat("santahat", ["santah", "san", "hat", "tahat"])) # True
+print(can_concat("bbbbbbbbbbbbbbbbbbbbbbbbbbbbby", ["b", "bb", "bbb", "bbbb", "bbbbb", "bbbbbb"])) # False
