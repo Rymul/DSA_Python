@@ -459,3 +459,41 @@ def _quickest_concat(s, words, memo):
 print(quickest_concat('respondorreact', ['re', 'or', 'spond', 'act', 'respond'])) # 4
 print(quickest_concat('simchacindy', ['sim', 'simcha', 'acindy'])) # -1
 print(quickest_concat('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu', ['u', 'uu', 'uuu', 'uuuu', 'uuuuu'])) # 7
+
+
+# Knightly Number
+
+def knightly_number(n, m, kr, kc, pr, pc):
+    """return the number of different ways the knight can move to the target in exactly m moves"""
+    return _knightly_number(n, m, kr, kc, pr, pc, {})
+
+def _knightly_number(n, m, kr, kc, pr, pc, memo):
+    key = (m, kr, kc)
+    if key in memo:
+        return memo[key]
+    if kr < 0 or kr >= n or kc < 0 or kc >= n:
+        return 0
+    if m == 0:
+        if (kr, kc) == (pr, pc):
+            return 1
+        return 0
+    neighbor_positions = [
+      (kr + 2, kc + 1),
+      (kr - 2, kc + 1),
+      (kr + 2, kc - 1),
+      (kr - 2, kc - 1),
+      (kr + 1, kc + 2),
+      (kr - 1, kc + 2),
+      (kr + 1, kc - 2),
+      (kr - 1, kc - 2)
+    ]
+    count = 0
+    for neighbor_pos in neighbor_positions:
+        neighbor_row, neighbor_col = neighbor_pos
+        count += _knightly_number(n, m - 1, neighbor_row, neighbor_col, pr, pc, memo)
+    memo[key] = count
+    return count
+
+print(knightly_number(8, 2, 5, 4, 5, 4)) # 8
+print(knightly_number(20, 12, 8, 3, 9, 14)) # 98410127
+print(knightly_number(8, 2, 0, 0, 1, 1)) # 0

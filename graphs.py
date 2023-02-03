@@ -574,10 +574,6 @@ def get_knight_positions(n, kr, kc) -> list:
             valid_positions.append(pos)
     return valid_positions
 
-
-
-
-
 print(knight_attack(8, 1, 1, 2, 2)) # -> 2
 print(knight_attack(24, 4, 7, 19, 20)) # -> 10
 print(knight_attack(3, 0, 0, 1, 1)) # -> None
