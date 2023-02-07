@@ -90,3 +90,47 @@ print(parenthetical_possibilities("(etc)(blvd)(cat)"))
 #  'cvc', 'cva', 'cvt', 'cdc', 'cda',
 #  'cdt'
 # ]
+
+
+# Substitute Synonyms
+
+def substitute_synonyms(sentence, synonyms):
+    """returns a list containing all possible sentences that can
+     be formed by substituting words of the sentence with their synonyms"""
+    words = sentence.split(' ')
+    sublists = generate(words, synonyms)
+    return [ ' '.join(sublist) for sublist in sublists]
+    # final_result = []
+    # for sublist in sublists:
+    #   final_result.append(' '.join(sublist))
+    # return final_result
+
+def generate(words, synonyms):
+    if len(words) == 0:
+        return [[]]
+
+    first_word = words[0]
+    remaining_words = words[1:]
+    sublists = generate(remaining_words, synonyms)
+
+    if first_word in synonyms:
+        result = []
+        for synonym in synonyms[first_word]:
+            result += [ [synonym, *sublist] for sublist in sublists]
+            # for sublist in sublists:
+            #   result.append([ synonym, *sublist])
+        return result
+    else:
+        # result += [ [first_word, *sublist] for sublist in sublists]
+        result = []
+        for sublist in sublists:
+            result.append([ first_word, *sublist])
+        return result
+
+sent = "palms sweaty knees weak arms heavy"
+syn = {
+  "palms": ["hands", "fists"],
+  "heavy": ["weighty", "hefty", "burdensome"],
+  "weak": ["fragile", "feeble", "frail", "sickly"],
+}
+print(substitute_synonyms(sent, syn))
