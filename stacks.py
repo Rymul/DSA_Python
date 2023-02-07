@@ -64,3 +64,26 @@ def decompress_braces(string):
 
 print(decompress_braces("ch3{ao}")) # chaoaoao
 print(decompress_braces("2{y3{o}}s")) # yoooyooos
+
+
+# Nesting Score
+
+def nesting_score(string):
+    """Returns the score of the string bracket counts where:
+    [] = 1
+    [n] = 2 * n points where n is the score of the substring"""
+    stack = [0]
+    for char in string:
+        if char == '[':
+            stack.append(0)
+        else:
+            popped = stack.pop()
+            if popped == 0:
+                stack[-1] += 1
+            else:
+                stack[-1] += popped * 2
+    return stack[0]
+
+print(nesting_score("[[][]][]")) # 5
+print(nesting_score("[[[[[[[][]]]]]]][]")) # 129
+
