@@ -30,3 +30,24 @@ def permutations(items):
 print(permutations(['cat', 'dog']))
 print(permutations(['cat', 'dog', 'cow', 'duck']))
 print(permutations([1,2,3,4,5,6]))
+
+
+# Create Combinations 
+def create_combinations(items, k):
+    """Returns a 2d list of all possible combinations of a length k"""
+    if len(items) < k:
+        return []
+    if k == 0:
+        return [[]]
+
+    first = items[0]
+    partial_combos = create_combinations(items[1:], k -1)
+    combos_with_first = []
+    for combo in partial_combos:
+        combos_with_first.append([first, *combo])
+
+    combos_without_first = create_combinations(items[1:], k)
+    return combos_with_first + combos_without_first
+
+print(create_combinations(["a", "b", "c", "d"], 2))
+print(create_combinations(["a", "b", "c", "d"], 3))
