@@ -39,3 +39,28 @@ def properly_formatted_brackets(string):
 
 print(properly_formatted_brackets('(){}[](())')) # True
 print(properly_formatted_brackets('[]{}(}[]')) # False
+
+
+# Decompress String Brackets
+
+def decompress_braces(string):
+    """Returns a decompressed version of the input string"""
+    stack = []
+    numbers = '123456789'
+    for char in string:
+        if char in numbers:
+            stack.append(int(char))
+        else:
+            if char == '}':
+                segment = ''
+                while not isinstance(stack[-1], int):
+                    popped = stack.pop()
+                    segment = popped + segment
+                num = stack.pop()
+                stack.append(segment * num)
+            elif char != '{':
+                stack.append(char)
+    return ''.join(stack)
+
+print(decompress_braces("ch3{ao}")) # chaoaoao
+print(decompress_braces("2{y3{o}}s")) # yoooyooos
