@@ -57,3 +57,14 @@ def better_anagrams(s1, s2):
     return Counter(s1) == Counter(s2)
 
 print(better_anagrams('monkeyswrite', 'newyorktimes'))
+
+
+def most_frequent_char(s):
+    count = Counter(s)
+    most = None
+    for char in s:
+        if most is None or count[char] > count[most]:
+            most = char
+    return most
+
+print(most_frequent_char('eleventennine'))
