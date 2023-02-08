@@ -68,3 +68,14 @@ def most_frequent_char(s):
     return most
 
 print(most_frequent_char('eleventennine'))
+
+
+def pair_sum(nums, target):
+    prev_nums = {}
+    for i, n in enumerate(nums):
+        comp = target - n
+        if comp in prev_nums:
+            return (i, prev_nums[comp])
+        prev_nums[n] = i
+
+print(pair_sum([4, 7, 9, 2, 5, 1], 3))
