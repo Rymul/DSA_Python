@@ -43,6 +43,12 @@ def sum_list(head):
         current = current.next
     return list_sum
 
+def recursive_sum_list(head):
+    if head is None:
+        return 0
+    return head.val + recursive_sum_list(head.next)
+
+
 a = Node(2)
 b = Node(8)
 c = Node(3)
@@ -55,3 +61,4 @@ c.next = d
 d.next = e
 
 print(sum_list(a))
+print(recursive_sum_list(a))
