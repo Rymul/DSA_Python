@@ -79,3 +79,13 @@ def pair_sum(nums, target):
         prev_nums[n] = i
 
 print(pair_sum([4, 7, 9, 2, 5, 1], 3))
+
+def pair_product(numbers, target):
+    prev_nums = {}
+    for i, num in enumerate(numbers):
+        comp = target / num
+        if comp in prev_nums:
+            return (i, prev_nums[comp])
+        prev_nums[num] = i
+
+print(pair_product([4, 7, 9, 2, 5, 1], 5))
