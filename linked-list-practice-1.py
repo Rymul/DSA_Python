@@ -33,4 +33,25 @@ c.next = d
 
 print(linked_list_values(a))
 print(recursive_linked_list_values(a))
-    
+
+
+def sum_list(head):
+    list_sum = 0
+    current = head
+    while current is not None:
+        list_sum += current.val
+        current = current.next
+    return list_sum
+
+a = Node(2)
+b = Node(8)
+c = Node(3)
+d = Node(-1)
+e = Node(7)
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+
+print(sum_list(a))
