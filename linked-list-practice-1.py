@@ -75,3 +75,14 @@ def linked_list_find(head, target_val):
 
 print(linked_list_find(a, 7))
 print(linked_list_find(a, 10))
+
+
+def recursive_linked_list_find(head, target):
+    if head is None:
+        return False
+    if head.val == target:
+        return True
+    return recursive_linked_list_find(head.next, target)
+
+print(recursive_linked_list_find(a, 7))
+print(recursive_linked_list_find(a, 10))
