@@ -110,3 +110,25 @@ def recursive_get_node_value(head, index):
 
 print(recursive_get_node_value(a, 4))
 print(recursive_get_node_value(a, 8))
+
+
+def reverse_list(head):
+    current = head
+    prev = None
+    while current is not None:
+        temp = current.next
+        current.next = prev
+        prev = current
+        current = temp
+    return linked_list_values(prev)
+
+a = Node("a")
+b = Node("b")
+c = Node("c")
+d = Node("d")
+
+a.next = b
+b.next = c
+c.next = d
+print(linked_list_values(a))
+print(reverse_list(a))
