@@ -62,3 +62,16 @@ d.next = e
 
 print(sum_list(a))
 print(recursive_sum_list(a))
+
+
+def linked_list_find(head, target_val):
+    current = head
+
+    while current is not None:
+        if current.val == target_val:
+            return True
+        current = current.next
+    return False
+
+print(linked_list_find(a, 7))
+print(linked_list_find(a, 10))
