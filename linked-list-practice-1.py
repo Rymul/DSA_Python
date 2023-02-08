@@ -132,3 +132,13 @@ b.next = c
 c.next = d
 print(linked_list_values(a))
 print(reverse_list(a))
+
+
+def recursive_reverse_list(head, prev = None):
+    if head is None:
+        return prev
+    temp = head.next
+    head.next = prev
+    return recursive_reverse_list(temp, head)
+
+print(recursive_reverse_list(a))
