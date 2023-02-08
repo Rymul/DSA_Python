@@ -1,3 +1,5 @@
+from collections import Counter
+
 def uncompress(s):
     i = 0
     j = 0
@@ -37,4 +39,21 @@ def compress(s):
     return ''.join(res)
 
 print(compress('ccaaatsss'))
-        
+
+def anagrams(s1, s2):
+    return char_count(s1) == char_count(s2)
+
+def char_count(s):
+    count = {}
+    for char in s:
+        if char not in count:
+            count[char] = 0
+        count[char] += 1
+    return count
+
+print(anagrams('monkeyswrite', 'newyorktimes'))
+
+def better_anagrams(s1, s2):
+    return Counter(s1) == Counter(s2)
+
+print(better_anagrams('monkeyswrite', 'newyorktimes'))
