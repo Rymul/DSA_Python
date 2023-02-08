@@ -86,3 +86,17 @@ def recursive_linked_list_find(head, target):
 
 print(recursive_linked_list_find(a, 7))
 print(recursive_linked_list_find(a, 10))
+
+
+def get_node_value(head, value):
+    current = head
+    index = 0
+    while current is not None:
+        if index == value:
+            return current.val
+        index += 1
+        current = current.next
+    return None
+
+print(get_node_value(a, 4))
+print(get_node_value(a, 8))
