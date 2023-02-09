@@ -201,3 +201,49 @@ y.next = z
 
 print(zipper_lists(a, x))
 # a -> x -> b -> y -> c -> z -> d -> e -> f
+
+def merge_lists(head_1, head_2):
+    dummy_head = Node(None)
+    tail = dummy_head
+    cur_1 = head_1
+    cur_2 = head_2
+
+    while cur_1 is not None and cur_2 is not None:
+        if cur_1.val <= cur_2.val:
+            tail.next = cur_1
+            cur_1 = cur_1.next
+        else:
+            tail.next = cur_2
+            cur_2 = cur_2.next
+        tail = tail.next
+
+    if cur_1 is not None:
+        tail.next = cur_1
+    if cur_2 is not None:
+        tail.next = cur_2
+    return linked_list_values(dummy_head.next)
+
+a = Node(5)
+b = Node(7)
+c = Node(10)
+d = Node(12)
+e = Node(20)
+f = Node(28)
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+# 5 -> 7 -> 10 -> 12 -> 20 -> 28
+
+q = Node(6)
+r = Node(8)
+s = Node(9)
+t = Node(25)
+q.next = r
+r.next = s
+s.next = t
+# 6 -> 8 -> 9 -> 25
+
+print(merge_lists(a, q))
+# 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 12 -> 20 -> 25 -> 28 
