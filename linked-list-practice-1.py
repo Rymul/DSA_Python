@@ -256,6 +256,13 @@ def is_univalue_list(head):
         current = current.next
     return True
 
+def recursive_is_univalue_list(head, prev_val = None):
+    if head is None:
+        return True
+    if prev_val is not None and prev_val != head.val:
+        return False
+    return recursive_is_univalue_list(head.next, head.val)
+
 u = Node(2)
 v = Node(2)
 w = Node(2)
@@ -271,3 +278,5 @@ x.next = y
 
 print(is_univalue_list(u)) # True
 print(is_univalue_list(a)) # False
+print(recursive_is_univalue_list(u)) # True
+print(recursive_is_univalue_list(a)) # False
