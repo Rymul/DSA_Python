@@ -247,3 +247,27 @@ s.next = t
 
 print(merge_lists(a, q))
 # 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 12 -> 20 -> 25 -> 28 
+
+def is_univalue_list(head):
+    current = head
+    while current is not None:
+        if current.val != head.val:
+            return False
+        current = current.next
+    return True
+
+u = Node(2)
+v = Node(2)
+w = Node(2)
+x = Node(2)
+y = Node(2)
+
+u.next = v
+v.next = w
+w.next = x
+x.next = y
+
+# 2 -> 2 -> 2 -> 2 -> 2
+
+print(is_univalue_list(u)) # True
+print(is_univalue_list(a)) # False
