@@ -280,3 +280,37 @@ print(is_univalue_list(u)) # True
 print(is_univalue_list(a)) # False
 print(recursive_is_univalue_list(u)) # True
 print(recursive_is_univalue_list(a)) # False
+
+
+def longest_streak(head):
+    current = head
+    prev_val = None
+    count = 0
+    max_count = 0
+    while current is not None:
+        if current.val == prev_val:
+            count += 1
+        else:
+            count = 1
+        if count > max_count:
+            max_count = count
+        prev_val = current.val
+        current = current.next
+    return max_count
+
+a = Node(3)
+b = Node(3)
+c = Node(3)
+d = Node(3)
+e = Node(9)
+f = Node(9)
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+
+# 3 -> 3 -> 3 -> 3 -> 9 -> 9
+
+print(longest_streak(a)) # 4
