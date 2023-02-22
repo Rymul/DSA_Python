@@ -58,3 +58,20 @@ def mergeTwoLists(l1, l2):
     current.next = l1 or l2
     return dummy.next
 
+
+def maxProfit(prices):
+    if not prices:
+        return 0
+    min_buy = prices[0]
+    max_profit = 0
+    for price in prices:
+        max_profit = max(price - min_buy, max_profit)
+        if price < min_buy:
+            min_buy = price
+    return max_profit
+
+p = [7,1,5,3,6,4] # 5
+p2 = [7,6,4,3,1] # 0
+
+print(maxProfit(p))
+print(maxProfit(p2))
