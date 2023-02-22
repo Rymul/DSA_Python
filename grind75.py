@@ -75,3 +75,14 @@ p2 = [7,6,4,3,1] # 0
 
 print(maxProfit(p))
 print(maxProfit(p2))
+
+#125 Valid Palindrome
+
+def isPalindrome(str):
+    mod_str = (''.join(char for char in str if char.isalnum())).lower()
+    return mod_str == mod_str[::-1]
+
+s1 = "A man, a plan, a canal: Panama"
+s2 = "race a car"
+print(isPalindrome(s1)) # True
+print(isPalindrome(s2)) # False
