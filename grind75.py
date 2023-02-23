@@ -1,3 +1,5 @@
+from collections import Counter
+
 #1. Two Sum
 
 def twoSum(nums, target):
@@ -101,3 +103,15 @@ def traverseTree(self, node):
     node.left = temp
     self.traverseTree(node.left)
     self.traverseTree(node.right)
+
+#242 Valid Anagram
+
+def isAnagram(s, t):
+    return Counter(s) == Counter(t)
+
+s = "anagram"
+t = "nagaram"
+u = "rat"
+v = "cat"
+print(isAnagram(s, t)) # True
+print(isAnagram(u, v)) # False
