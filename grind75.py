@@ -86,3 +86,18 @@ s1 = "A man, a plan, a canal: Panama"
 s2 = "race a car"
 print(isPalindrome(s1)) # True
 print(isPalindrome(s2)) # False
+
+#226. Invert Binary Tree
+
+def invertTree(self, root):
+    self.traverseTree(root)
+    return root
+
+def traverseTree(self, node):
+    if node is None:
+        return None
+    temp = node.right
+    node.right = node.left
+    node.left = temp
+    self.traverseTree(node.left)
+    self.traverseTree(node.right)
