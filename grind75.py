@@ -115,3 +115,22 @@ u = "rat"
 v = "cat"
 print(isAnagram(s, t)) # True
 print(isAnagram(u, v)) # False
+
+#704. Binary Search
+
+def search(nums, target):
+    left = 0
+    right = len(nums) -1
+    while left <= right:
+        mid = left + (right-left)//2
+        if nums[mid] > target:
+            right = mid -1
+        elif nums[mid] < target:
+            left = mid +1
+        else:
+            return mid
+    return -1
+
+n = [-1,0,3,5,9,12]
+t = 9
+print(search(n, t)) # 4
