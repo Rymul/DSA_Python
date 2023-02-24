@@ -134,3 +134,30 @@ def search(nums, target):
 n = [-1,0,3,5,9,12]
 t = 9
 print(search(n, t)) # 4
+
+
+#733. Flood Fill
+
+def floodFill( image, sr, sc, color):
+    if image[sr][sc] == color:
+        return
+    fill(image, sr, sc, color, image[sr][sc])
+    return image
+
+def fill( image, sr, sc, color, cur):
+    if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image):
+        return
+    if cur != image[sr][sc]:
+        return
+    image[sr][sc] = color
+    fill(image, sr-1, sc, color, cur)
+    fill(image, sr+1, sc, color, cur)
+    fill(image, sr, sc-1, color, cur)
+    fill(image, sr, sc+1, color, cur)
+
+i = [[1,1,1],[1,1,0],[1,0,1]]
+sr1 = 1
+sc1 = 1
+c = 2
+
+print(floodFill(i, sr1, sc1, c))
