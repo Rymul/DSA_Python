@@ -1,4 +1,5 @@
 from collections import Counter
+from collections import defaultdict
 
 #1. Two Sum
 
@@ -171,3 +172,24 @@ def lowestCommonAncestor(self, root, p, q):
         return self.lowestCommonAncestor(root.right, p, q)
     else:
         return root
+
+
+#1443. Minimum Time to Collect All Apples in a Tree
+def minTime(n: int, edges: list[list[int]], has_apple: list[bool]) -> int:
+    adj_list = defaultdict(list)
+    for star_node, end_node in edges:
+        adj_list[star_node].append(end_node)
+        adj_list[star_node].append(end_node)
+    visited = set()
+
+    def dfs(node):
+        visited.add(node)
+        time_of_collect = 0
+        for child in adj_list[node]:
+            if child in visited:
+                continue
+            time_from_child = dfs(child)
+            if time_from_child or has_apple[child]:
+                time_of_collect += time_from_child + 2
+        return time_of_collect
+    return dfs(node = 0)
