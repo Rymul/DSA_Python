@@ -193,3 +193,26 @@ def minTime(n: int, edges: list[list[int]], has_apple: list[bool]) -> int:
                 time_of_collect += time_from_child + 2
         return time_of_collect
     return dfs(node = 0)
+
+
+#110. Balanced Binary Tree
+
+def isBalanced(self, root):
+    if not root:
+        return True
+    if self.checkBalance(root) == -1:
+        return False
+    else:
+        return True
+
+def checkBalance(self, node):
+    if not node:
+        return 0
+    left = self.checkBalance(node.left)
+    right = self.checkBalance(node.right)
+    if left == -1 or right == -1:
+        return -1
+    elif abs(left - right) <= 1:
+        return max(left, right) + 1
+    else:
+        return -1
