@@ -314,3 +314,33 @@ e.next = f
 # 3 -> 3 -> 3 -> 3 -> 9 -> 9
 
 print(longest_streak(a)) # 4
+
+
+def removeNode(head, target):
+    if head.val == target:
+        return head.next
+    current = head
+    prev = None
+
+    while current is not None:
+        if current.val == target:
+            prev.next = current.next
+            break
+        prev = current
+        current = current.next
+    return head
+
+a = Node("a")
+b = Node("b")
+c = Node("c")
+d = Node("d")
+e = Node("e")
+f = Node("f")
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+
+print(removeNode(a, "c"))
