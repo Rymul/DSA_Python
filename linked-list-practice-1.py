@@ -344,3 +344,20 @@ d.next = e
 e.next = f
 
 print(removeNode(a, "c"))
+
+
+# 141. Linked List Cycle
+
+def hasCycle(head):
+    visited = set()
+    current = head
+    while current is not None:
+        if current in visited:
+            return True
+        visited.add(current)
+        current = current.next
+    return False
+
+print(hasCycle(a)) # False
+f.next = a
+print(hasCycle(a)) # True
