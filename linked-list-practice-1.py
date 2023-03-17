@@ -378,3 +378,11 @@ def firstBadVersion(n):
     return left
 
 
+# 28. Find the Index of the First Occurrence in a String
+
+def strStr(haystack, needle):
+    return haystack.find(needle)
+
+h = "sadbutsad" 
+n = "sad"
+print(strStr(h, n)) # 0
