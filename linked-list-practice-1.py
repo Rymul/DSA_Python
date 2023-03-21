@@ -388,7 +388,7 @@ n = "sad"
 print(strStr(h, n)) # 0
 
 
-def insertNode(head, value, index):
+def insert_node(head, value, index):
     if index == 0:
         new_head = Node(value)
         new_head.next = head
@@ -404,3 +404,33 @@ def insertNode(head, value, index):
         current = current.next
         count += 1
     return head
+
+a = Node("a")
+b = Node("b")
+c = Node("c")
+d = Node("d")
+
+a.next = b
+b.next = c
+c.next = d
+
+# a -> b -> c -> d
+
+print(insert_node(a, 'x', 2))
+# a -> b -> x -> c -> d
+
+
+
+def create_linked_list(list_values):
+    dummy = Node(None)
+    for i, ele in enumerate(list_values):
+        if i == 0:
+            dummy.next = Node(ele)
+            current = dummy.next
+        else:
+            current.next = Node(ele)
+            current = current.next
+    return dummy.next
+
+print(create_linked_list(["h", "e", "y"]))
+print(create_linked_list([]))
