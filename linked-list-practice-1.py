@@ -434,3 +434,48 @@ def create_linked_list(list_values):
 
 print(create_linked_list(["h", "e", "y"]))
 print(create_linked_list([]))
+
+
+def add_lists(head_1,head_2):
+    current_1 = head_1
+    current_2 = head_2
+    dummy = Node(None)
+    tail = dummy
+    carry = 0
+
+    while current_1 is not None or current_2 is not None or carry == 1:
+        val_1 = 0 if current_1 is None else current_1.val
+        val_2 = 0 if current_2 is None else current_2.val
+        new_sum = val_1 + val_2 + carry
+        carry = 1 if new_sum > 9 else 0
+        digit = new_sum % 10
+        print(digit)
+        tail.next = Node(digit)
+        tail = tail.next
+        if current_1 is not None:
+            current_1 = current_1.next
+        if current_2 is not None:
+            current_2 = current_2.next
+    return dummy.next
+
+#   621
+# + 354
+# -----
+#   975
+
+a1 = Node(1)
+a2 = Node(2)
+a3 = Node(6)
+a1.next = a2
+a2.next = a3
+# 1 -> 2 -> 6
+
+b1 = Node(4)
+b2 = Node(5)
+b3 = Node(3)
+b1.next = b2
+b2.next = b3
+# 4 -> 5 -> 3
+
+print(add_lists(a1, b1))
+# 5 -> 7 -> 9
