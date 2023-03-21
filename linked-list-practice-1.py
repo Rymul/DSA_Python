@@ -366,16 +366,16 @@ print(hasCycle(a)) # True
 # 278. First Bad Version
 # function first bad version is given
 
-def firstBadVersion(n):
-    left = 1
-    right = n
-    while left < right:
-        mid = left + (right - left)//2
-        if isBadversion(mid):
-            right = mid
-        else:
-            left = mid + 1
-    return left
+# def firstBadVersion(n):
+#     left = 1
+#     right = n
+#     while left < right:
+#         mid = left + (right - left)//2
+#         if isBadversion(mid):
+#             right = mid
+#         else:
+#             left = mid + 1
+#     return left
 
 
 # 28. Find the Index of the First Occurrence in a String
@@ -386,3 +386,21 @@ def strStr(haystack, needle):
 h = "sadbutsad" 
 n = "sad"
 print(strStr(h, n)) # 0
+
+
+def insertNode(head, value, index):
+    if index == 0:
+        new_head = Node(value)
+        new_head.next = head
+        return new_head
+    current = head
+    count = 0
+
+    while current is not None:
+        if count == index -1:
+            temp = current.next
+            current.next = Node(value)
+            current.next.next = temp
+        current = current.next
+        count += 1
+    return head
