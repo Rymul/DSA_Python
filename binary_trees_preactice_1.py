@@ -105,6 +105,13 @@ def tree_includes(root, target):
             queue.append(current.right)
     return False
 
+def recursive_tree_includes(root, target):
+    if root is None:
+        return False
+    if root.val == target:
+        return True
+    return recursive_tree_includes(root.left, target) or recursive_tree_includes(root.right, target)
+
 a = Node("a")
 b = Node("b")
 c = Node("c")
@@ -126,3 +133,5 @@ c.right = f
 
 print(tree_includes(a, "e")) # -> True
 print(tree_includes(a, "z")) # -> False
+print(recursive_tree_includes(a, "e")) # -> True
+print(recursive_tree_includes(a, "z")) # -> False
