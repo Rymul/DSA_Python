@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
     def __init__(self, val):
         self.val = val
@@ -31,3 +33,19 @@ c.right = f
 
 print(depth_first_values(a))
 #   -> ['a', 'b', 'd', 'e', 'c', 'f']
+
+def breadth_first_values(root):
+    if root is None:
+        return []
+    queue = deque([root])
+    res = []
+    while queue:
+        current = queue.popleft()
+        res.append(current.val)
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return res
+
+print(breadth_first_values(a))
