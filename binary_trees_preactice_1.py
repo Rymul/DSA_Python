@@ -51,6 +51,8 @@ def breadth_first_values(root):
 print(breadth_first_values(a))
 
 def tree_sum(root):
+    if root is None:
+        return 0
     queue = deque([root])
     total_sum = 0
     while queue:
@@ -62,6 +64,10 @@ def tree_sum(root):
             queue.append(current.right)
     return total_sum
 
+def recursive_tree_sum(root):
+    if root is None:
+        return 0
+    return root.val + recursive_tree_sum(root.left) + recursive_tree_sum(root.right)
 
 a = Node(3)
 b = Node(11)
@@ -83,3 +89,4 @@ c.right = f
 # 4   -2     1
 
 print(tree_sum(a)) # -> 21
+print(recursive_tree_sum(a))
