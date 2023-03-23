@@ -135,3 +135,37 @@ print(tree_includes(a, "e")) # -> True
 print(tree_includes(a, "z")) # -> False
 print(recursive_tree_includes(a, "e")) # -> True
 print(recursive_tree_includes(a, "z")) # -> False
+
+
+def tree_min_value(root):
+    queue = deque([root])
+    min_val = float('inf')
+    while queue:
+        current = queue.popleft()
+        if current.val < min_val:
+            min_val = current.val
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return min_val
+
+a = Node(3)
+b = Node(11)
+c = Node(4)
+d = Node(4)
+e = Node(-2)
+f = Node(1)
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+#       3
+#    /    \
+#   11     4
+#  / \      \
+# 4   -2     1
+print(tree_min_value(a)) # -> -2
