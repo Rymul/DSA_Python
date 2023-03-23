@@ -150,6 +150,13 @@ def tree_min_value(root):
             queue.append(current.right)
     return min_val
 
+def recursive_tree_min_value(root):
+    if root is None:
+        return float('inf')
+    min_left = recursive_tree_min_value(root.left)
+    min_right = recursive_tree_min_value(root.right)
+    return min(root.val, min_left, min_right)
+
 a = Node(3)
 b = Node(11)
 c = Node(4)
@@ -168,4 +175,6 @@ c.right = f
 #   11     4
 #  / \      \
 # 4   -2     1
+
 print(tree_min_value(a)) # -> -2
+print(recursive_tree_min_value(a))
