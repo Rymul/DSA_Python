@@ -251,3 +251,38 @@ c.right = f
 # d   e     f
 
 print(path_finder(a, 'e')) # -> [ 'a', 'b', 'e' ]
+
+
+def tree_value_count(root, target):
+    queue = deque([root])
+    count = 0
+    while queue:
+        current = queue.popleft()
+        if current.val == target:
+            count += 1
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return count
+
+a = Node(12)
+b = Node(6)
+c = Node(6)
+d = Node(4)
+e = Node(6)
+f = Node(12)
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+#      12
+#    /   \
+#   6     6
+#  / \     \
+# 4   6     12
+
+print(tree_value_count(a,  6)) # -> 3
