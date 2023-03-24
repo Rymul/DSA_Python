@@ -266,6 +266,12 @@ def tree_value_count(root, target):
             queue.append(current.right)
     return count
 
+def recursive_tree_value_count(root, target):
+    if root is None:
+        return 0
+    match = 1 if root.val == target else 0
+    return match + recursive_tree_value_count(root.left, target) + recursive_tree_value_count(root.right, target)
+
 a = Node(12)
 b = Node(6)
 c = Node(6)
@@ -286,3 +292,4 @@ c.right = f
 # 4   6     12
 
 print(tree_value_count(a,  6)) # -> 3
+print(recursive_tree_value_count(a, 6))
