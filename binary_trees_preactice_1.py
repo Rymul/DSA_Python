@@ -322,3 +322,34 @@ c.right = f
 # d   e     f
 
 print(how_high(a)) # -> 2
+
+def bottom_right_value(root):
+    queue = deque([root])
+    while queue:
+        current = queue.popleft()
+        if current.left is not None:
+            queue.append(current.left)
+        if current.right is not None:
+            queue.append(current.right)
+    return current.val
+
+a = Node(3)
+b = Node(11)
+c = Node(10)
+d = Node(4)
+e = Node(-2)
+f = Node(1)
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+#       3
+#    /    \
+#   11     10
+#  / \      \
+# 4   -2     1
+
+print(bottom_right_value(a)) # -> 1
