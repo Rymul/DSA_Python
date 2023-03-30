@@ -1,4 +1,5 @@
 from collections import deque
+from statistics import mean
 
 class Node:
     def __init__(self, val):
@@ -455,3 +456,32 @@ print(iterative_tree_levels(a)) # ->
 #   ['b', 'c'],
 #   ['d', 'e', 'f']
 # ]
+
+def level_averages(root):
+    levels = []
+    fill_levels(root, levels, 0)
+    avg = []
+    for sub_level in levels:
+        avg.append(mean(sub_level))
+    return avg
+
+a = Node(3)
+b = Node(11)
+c = Node(4)
+d = Node(4)
+e = Node(-2)
+f = Node(1)
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+#       3
+#    /    \
+#   11     4
+#  / \      \
+# 4   -2     1
+
+print(level_averages(a)) # -> [ 3, 7.5, 1 ] 
