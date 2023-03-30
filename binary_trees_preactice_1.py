@@ -499,6 +499,21 @@ def _leaf_list(root, leaves):
     _leaf_list(root.left, leaves)
     _leaf_list(root.right, leaves)
 
+def iterative_leaf_list(root):
+    if root is None:
+        return []
+    leaves = []
+    stack = [root]
+    while stack:
+        current = stack.pop()
+        if current.left is None and current.right is None:
+            leaves.append(current.val)
+        if current.right is not None:
+            stack.append(current.right)
+        if current.left is not None:
+            stack.append(current.left)
+    return leaves
+
 a = Node("a")
 b = Node("b")
 c = Node("c")
@@ -518,4 +533,6 @@ c.right = f
 #  / \     \
 # d   e     f
 
-print(leaf_list(a)) # -> [ 'd', 'e', 'f' ]
+print(leaf_list(a))
+print(iterative_leaf_list(a)) 
+# -> [ 'd', 'e', 'f' ]
