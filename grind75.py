@@ -243,3 +243,18 @@ ransom = "aa"
 mag = "aab"
 # Output: true
 print(canConstruct(ransom, mag))
+
+
+#70. Climbing Stairs
+
+def climbStair(n):
+    if n < 3:
+        return n
+    a, b = 1, 2
+    for _ in range(2, n):
+        a, b = b, a + b
+    return b
+
+print(climbStair(3))
+print(climbStair(5))
+print(climbStair(20))
