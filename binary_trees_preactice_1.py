@@ -395,3 +395,44 @@ print(all_tree_paths(a)) # ->
 #   [ 'a', 'b', 'e' ], 
 #   [ 'a', 'c', 'f' ] 
 # ] 
+
+def tree_levels(root):
+    levels = []
+    fill_levels(root, levels, 0)
+    return levels
+
+def fill_levels(root, levels, level_num):
+    if root is None:
+        return
+    if len(levels) == level_num:
+        levels.append([root.val])
+    else:
+        levels[level_num].append(root.val)
+    fill_levels(root.left, levels, level_num+1)
+    fill_levels(root.right, levels, level_num+1)
+
+a = Node('a')
+b = Node('b')
+c = Node('c')
+d = Node('d')
+e = Node('e')
+f = Node('f')
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+#      a
+#    /   \
+#   b     c
+#  / \     \
+# d   e     f
+
+print(tree_levels(a)) # ->
+# [
+#   ['a'],
+#   ['b', 'c'],
+#   ['d', 'e', 'f']
+# ]

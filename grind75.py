@@ -220,7 +220,7 @@ def checkBalance(self, node):
 
 #383. Ransom Note
 
-def canConstruct(ransomNote, magazine):
+def canConstruct(ransom_note, magazine):
     count = Counter(magazine)
     # count = dict()
     # for char in magazine:
@@ -228,18 +228,18 @@ def canConstruct(ransomNote, magazine):
     #         count[char] += 1
     #     else:
     #         count[char] = 1
-    for char in ransomNote:
+    for char in ransom_note:
         if char in count and count[char] > 0:
             count[char] -= 1
         else:
             return False
     return True
 
-ransomNote = "a"
-magazine = "b"
-print(canConstruct(ransomNote, magazine))
+ransom = "a"
+mag = "b"
+print(canConstruct(ransom, mag))
 # Output: false
-ransomNote = "aa"
-magazine = "aab"
+ransom = "aa"
+mag = "aab"
 # Output: true
-print(canConstruct(ransomNote, magazine))
+print(canConstruct(ransom, mag))
