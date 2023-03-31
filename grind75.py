@@ -273,3 +273,32 @@ def longestPalindrome(s):
     return count + 1 if arr else count
 
 print(longestPalindrome("abccccdd"))
+
+
+#206. Reverse Linked List
+
+def reverseList(head):
+    prev = None
+    while head:
+        temp = head
+        head = head.next
+        temp.next = prev
+        prev = temp
+    return prev
+
+a = ListNode("a")
+b = ListNode("b")
+c = ListNode("c")
+d = ListNode("d")
+e = ListNode("e")
+f = ListNode("f")
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+
+# a -> b -> c -> d -> e -> f
+
+print(reverseList(a)) # f -> e -> d -> c -> b -> 
