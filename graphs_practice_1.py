@@ -10,7 +10,13 @@ def has_path(graph, src, dst):
             queue.append(neighbor)
     return False
 
-
+def recursive_has_path(graph, src, dst):
+    if src == dst:
+        return True
+    for neighbor in graph[src]:
+        if recursive_has_path(graph, neighbor, dst) is True:
+            return True
+    return False
 
 graph_1 = {
   'f': ['g', 'i'],
@@ -32,3 +38,6 @@ graph_2 = {
 
 print(has_path(graph_1, 'f', 'k')) # True
 print(has_path(graph_2, 'f', 'j')) # False
+print(recursive_has_path(graph_1, 'f', 'k')) # True
+print(recursive_has_path(graph_2, 'f', 'j')) # False
+
