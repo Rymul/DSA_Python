@@ -258,3 +258,18 @@ def climbStair(n):
 print(climbStair(3))
 print(climbStair(5))
 print(climbStair(20))
+
+# 409. Longest Palindrome
+
+def longestPalindrome(s):
+    arr = []
+    count = 0
+    for char in s:
+        if char in arr:
+            count += 2
+            arr.remove(char)
+        else:
+            arr.append(char)
+    return count + 1 if arr else count
+
+print(longestPalindrome("abccccdd"))
