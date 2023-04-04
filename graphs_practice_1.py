@@ -107,3 +107,31 @@ print(connected_components_count({
   3: [2, 4],
   4: [3, 2]
 })) # -> 2
+
+
+def largest_component(graph):
+    visited = set()
+    max_size = 0
+    for node in graph:
+        count = adventure(graph, node, visited)
+        if count > max_size:
+            max_size = count
+    return max_size
+
+def adventure(graph, current, visited):
+    if current in visited:
+        return 0
+    visited.add(current)
+    count = 1
+    for neighbor in graph[current]:
+        count += adventure(graph, neighbor, visited)
+    return count
+
+print(largest_component({
+  1: [2],
+  2: [1,8],
+  6: [7],
+  9: [8],
+  7: [6, 8],
+  8: [9, 7, 2]
+})) # -> 6
