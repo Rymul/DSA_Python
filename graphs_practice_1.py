@@ -135,3 +135,30 @@ print(largest_component({
   7: [6, 8],
   8: [9, 7, 2]
 })) # -> 6
+
+
+def shortest_path(edges, node_A, node_B):
+    visited = set([ node_A ])
+    graph = build_graph(edges)
+    queue = deque([ (node_A, 0) ])
+
+    while queue:
+        current, distance = queue.popleft()  
+        if current == node_B:
+            return distance
+
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append((neighbor, distance + 1))
+    return -1
+
+edges = [
+  ['w', 'x'],
+  ['x', 'y'],
+  ['z', 'y'],
+  ['z', 'v'],
+  ['w', 'v']
+]
+
+print(shortest_path(edges, 'w', 'z')) # -> 2
