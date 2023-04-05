@@ -302,3 +302,14 @@ e.next = f
 # a -> b -> c -> d -> e -> f
 
 print(reverseList(a)) # f -> e -> d -> c -> b -> 
+
+
+#169. Majority Element
+
+def majorityElement(nums):
+    counter = Counter(nums)
+    for n, c in counter.items():
+        if c > (len(nums)/2):
+            return n
+
+print(majorityElement([2,2,1,1,1,2,2]))
