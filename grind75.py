@@ -313,3 +313,19 @@ def majorityElement(nums):
             return n
 
 print(majorityElement([2,2,1,1,1,2,2]))
+
+
+#543. Diameter of Binary Tree
+
+def diameterOfBinaryTree(root) -> int:
+    res = [0]
+    def _helper(root):
+        if root is None:
+            return 0
+        left = _helper(root.left)
+        right = _helper(root.right)
+        res[0] = max(res[0],1+left+right)
+        return 1 + max(left, right)
+    _helper(root)
+    return res[0]-1
+
