@@ -53,3 +53,14 @@ def isPalindrome(s) -> bool:
 
 print(isPalindrome("A man, a plan, a canal: Panama"))
 print(isPalindrome("Race a car"))
+
+# 136. Single Number
+
+def singleNumber(nums) -> int:
+    n = len(nums)
+    num = nums[0]
+    for i in range(1,n):
+        num = num ^ nums[i] 
+    return num
+
+print(singleNumber([4,1,2,1,2]))
