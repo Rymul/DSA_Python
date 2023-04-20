@@ -28,3 +28,18 @@ def pascalsTriangle2(rowIndex)-> list:
 
 print(pascalsTriangle2(3))
 print(pascalsTriangle2(1))
+
+# 121. Best Time to Buy and Sell Stock
+
+def maxProfit(prices) -> int:
+    if not prices:
+        return 0
+    max_return = 0
+    min_buy = prices[0]
+    for price in prices:
+        max_return = max(price - min_buy, max_return)
+        if price < min_buy:
+            min_buy = price
+    return max_return
+
+print(maxProfit([7,1,5,3,6,4])) # 5
