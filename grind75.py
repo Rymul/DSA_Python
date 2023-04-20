@@ -329,3 +329,14 @@ def diameterOfBinaryTree(root) -> int:
     _helper(root)
     return res[0]-1
 
+
+# 876. Middle of the Linked List
+
+def middleNode(head):
+    current = head
+    while current != None:
+        current = current.next
+        if current == None : return head
+        head = head.next
+        current = current.next
+    return head
