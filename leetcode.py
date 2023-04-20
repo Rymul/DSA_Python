@@ -43,3 +43,13 @@ def maxProfit(prices) -> int:
     return max_return
 
 print(maxProfit([7,1,5,3,6,4])) # 5
+
+
+# 125. Valid Palindrome
+
+def isPalindrome(s) -> bool:
+    mod_str = (''.join(char for char in s if char.isalnum())).lower()
+    return mod_str == mod_str[::-1]
+
+print(isPalindrome("A man, a plan, a canal: Panama"))
+print(isPalindrome("Race a car"))
