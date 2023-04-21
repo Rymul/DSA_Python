@@ -1,3 +1,5 @@
+from collections import Counter
+
 # 118. Pascal's Triangle
 
 def pascalsTriangle(numRows) -> list:
@@ -107,3 +109,13 @@ def convertToTitle(columnNumber) -> str:
 
 print(convertToTitle(2))
 print(convertToTitle(728))
+
+# 169. Majority Element
+
+def majorityElement(nums) -> int:
+    counter = Counter(nums)
+    for n, c in counter.items():
+        if c > (len(nums)/2):
+            return n
+
+print(majorityElement([2,2,1,1,1,2,2]))
