@@ -80,3 +80,18 @@ def postorderTraversal(root) -> list:
         if current.right:
             stack.append(current.right)
     return res[::-1]
+
+# 160. Intersection of Two Linked Lists
+
+def getIntersectionNode(headA, headB):
+    first = set()
+    curr = headA
+    while curr:
+        first.add(curr)
+        curr = curr.next
+    curr = headB
+    while curr:
+        if curr in first:
+            return curr
+        curr = curr.next
+    return None
