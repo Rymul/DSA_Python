@@ -64,3 +64,19 @@ def singleNumber(nums) -> int:
     return num
 
 print(singleNumber([4,1,2,1,2]))
+
+# 145. Binary Tree Postorder Traversal
+
+def postorderTraversal(root) -> list:
+    if root is None:
+        return []
+    res = []
+    stack = [root]
+    while stack:
+        current = stack.pop()
+        res.append(current.val)
+        if current.left:
+            stack.append(current.left)
+        if current.right:
+            stack.append(current.right)
+    return res[::-1]
