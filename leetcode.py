@@ -95,3 +95,15 @@ def getIntersectionNode(headA, headB):
             return curr
         curr = curr.next
     return None
+
+# 168. Excel Sheet Column Title
+
+def convertToTitle(columnNumber) -> str:
+    res = ""
+    while columnNumber > 0:
+        res = chr(ord('A') + (columnNumber - 1) % 26) + res
+        columnNumber = (columnNumber - 1) // 26
+    return res
+
+print(convertToTitle(2))
+print(convertToTitle(728))
