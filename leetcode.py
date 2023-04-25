@@ -119,3 +119,15 @@ def majorityElement(nums) -> int:
             return n
 
 print(majorityElement([2,2,1,1,1,2,2]))
+
+# 387. First Unique Character in a String
+
+def firstUniqChar(s) -> int:
+    counter = Counter(s)
+    for i, char in enumerate(s):
+        if counter[s[i]] == 1:
+            return i
+    return -1
+
+print(firstUniqChar("loveleetcode"))
+
