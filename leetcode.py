@@ -157,3 +157,14 @@ class Solution:
         if root.children:
             depth += max(self.maxDepth(child) for child in root.children)
         return depth
+
+# 561. Array Partition
+
+def arrayPairSum(nums) -> int:
+    nums.sort()
+    res_sum = 0
+    for i in range(0,len(nums),2):
+        res_sum += nums[i]
+    return res_sum
+
+print(arrayPairSum([6,2,6,5,1,2])) #9
