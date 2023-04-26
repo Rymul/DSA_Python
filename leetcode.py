@@ -131,3 +131,11 @@ def firstUniqChar(s) -> int:
 
 print(firstUniqChar("loveleetcode"))
 
+# 557. Reverse Words in a String III
+
+def reverseWords(s) -> str:
+    arr = s.split(" ")
+    arr = [i[::-1] for i in arr]
+    return " ".join(arr)
+
+print(reverseWords('Wow, this works very nice'))
