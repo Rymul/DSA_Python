@@ -187,3 +187,11 @@ def mergeTrees(root1, root2):
         res.left = mergeTrees(root1.left, root2.left)
         res.right = mergeTrees(root1.right, root2.right)
     return res
+
+# 628. Maximum Product of Three Numbers
+
+def maximumProduct(nums) -> int:
+    nums.sort()
+    return max(nums[0]*nums[1]*nums[-1], nums[-1]*nums[-2]*nums[-3])
+
+print(maximumProduct([1,2,3,4,5]))
