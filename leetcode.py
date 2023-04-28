@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, deque
 
 # 118. Pascal's Triangle
 
@@ -195,3 +195,21 @@ def maximumProduct(nums) -> int:
     return max(nums[0]*nums[1]*nums[-1], nums[-1]*nums[-2]*nums[-3])
 
 print(maximumProduct([1,2,3,4,5]))
+
+# 637. Average of Levels in Binary Tree
+
+def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+    queue = deque([root])
+    average_of_level = []
+    while queue:
+        size = len(queue)
+        totalSum = 0
+        for i in range(size):
+            node = queue.popleft()
+            totalSum += node.val
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        average_of_level.append(totalSum/size)
+    return average_of_level
