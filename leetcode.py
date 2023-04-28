@@ -168,3 +168,22 @@ def arrayPairSum(nums) -> int:
     return res_sum
 
 print(arrayPairSum([6,2,6,5,1,2])) #9
+
+# 617. Merge Two Binary Trees
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def mergeTrees(root1, root2):
+    if not root1:
+        return root2
+    elif not root2:
+        return root1
+    else:
+        res = TreeNode(root1.val + root2.val)
+        res.left = mergeTrees(root1.left, root2.left)
+        res.right = mergeTrees(root1.right, root2.right)
+    return res
