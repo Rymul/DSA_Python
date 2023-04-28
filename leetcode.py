@@ -198,13 +198,13 @@ print(maximumProduct([1,2,3,4,5]))
 
 # 637. Average of Levels in Binary Tree
 
-def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+def averageOfLevels(root):
     queue = deque([root])
     average_of_level = []
     while queue:
         size = len(queue)
         totalSum = 0
-        for i in range(size):
+        for _ in range(size):
             node = queue.popleft()
             totalSum += node.val
             if node.left:
