@@ -213,3 +213,17 @@ def averageOfLevels(root):
                 queue.append(node.right)
         average_of_level.append(totalSum/size)
     return average_of_level
+
+# 507. Perfect Number
+
+def checkPerfectNumber(num) -> bool:
+    if num == 1:
+        return False
+    res = 1
+    for i in range(2,int(num ** 0.5) + 1):
+        if num % i == 0:
+            res += i + num//i
+    return res == num
+
+print(checkPerfectNumber(28))
+print(checkPerfectNumber(7))
