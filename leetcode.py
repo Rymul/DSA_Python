@@ -238,3 +238,11 @@ def fib(n) -> int:
     return fib(n-1) + fib(n-2)
 
 print(fib(3))
+
+
+# 520. Detect Capital
+def detectCapitalUse(word) -> bool:
+    return word in [word.lower(), word.upper(), word.capitalize()]
+
+print(detectCapitalUse('USA'))
+print(detectCapitalUse("FalSE"))
