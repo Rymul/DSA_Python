@@ -227,3 +227,14 @@ def checkPerfectNumber(num) -> bool:
 
 print(checkPerfectNumber(28))
 print(checkPerfectNumber(7))
+
+# 509. Fibonacci Number
+
+def fib(n) -> int:
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n-1) + fib(n-2)
+
+print(fib(3))
