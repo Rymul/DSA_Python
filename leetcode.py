@@ -260,3 +260,19 @@ def isHappy(n) -> bool:
 
 print(isHappy(19))
 print(isHappy(2))
+
+# 205. Isomorphic Strings
+
+def isIsomorphic(s, t) -> bool:
+    map1 = []
+    map2 = []
+    for i in s:
+        map1.append(s.index(i))
+    for i in t:
+        map2.append(t.index(i))
+    if map1 == map2:
+        return True
+    return False
+
+print(isIsomorphic("egg", "add"))
+print(isIsomorphic("foo", "bar"))
