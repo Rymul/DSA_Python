@@ -276,3 +276,16 @@ def isIsomorphic(s, t) -> bool:
 
 print(isIsomorphic("egg", "add"))
 print(isIsomorphic("foo", "bar"))
+
+# 219. Contains Duplicate II
+
+def containsNearbyDuplicate(nums, k) -> bool:
+    hmap = {}
+    for idx in range(len(nums)):
+        if nums[idx] in hmap and abs(idx - hmap[nums[idx]]) <= k:
+            return True
+        hmap[nums[idx]] = idx
+    return False
+
+print(containsNearbyDuplicate([1,2,3,1], 3))
+print(containsNearbyDuplicate([1,2,3,1,2,3], 2))
