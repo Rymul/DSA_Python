@@ -246,3 +246,17 @@ def detectCapitalUse(word) -> bool:
 
 print(detectCapitalUse('USA'))
 print(detectCapitalUse("FalSE"))
+
+# 202. Happy Number
+
+def isHappy(n) -> bool:
+    visited = set()
+    while n != 1:
+        if n in visited: return False
+        visited.add(n)
+        n = sum([int(i) ** 2 for i in str(n)])
+        if n == 1:
+            return True
+
+print(isHappy(19))
+print(isHappy(2))
