@@ -289,3 +289,15 @@ def containsNearbyDuplicate(nums, k) -> bool:
 
 print(containsNearbyDuplicate([1,2,3,1], 3))
 print(containsNearbyDuplicate([1,2,3,1,2,3], 2))
+
+
+# 434. Number of Segments in a String
+
+def countSegments(s) -> int:
+    count = 0
+    for i in range(len(s)):
+        if s[i] != ' ' and (i == 0 or s[i-1] == ' '):
+            count += 1
+    return count
+
+print(countSegments("Hello, my name is John")) # 5
