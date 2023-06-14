@@ -301,3 +301,14 @@ def countSegments(s) -> int:
     return count
 
 print(countSegments("Hello, my name is John")) # 5
+
+# 441. Arranging Coins
+
+def arrangeCoins(n) -> int:
+    i=0
+    while n >= 0:
+        i += 1
+        n = n - i
+    return i - 1
+
+print(arrangeCoins(5)) #2
