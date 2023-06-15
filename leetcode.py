@@ -312,3 +312,12 @@ def arrangeCoins(n) -> int:
     return i - 1
 
 print(arrangeCoins(5)) #2
+
+
+# 231. Power of Two
+
+def isPowerOfTwo(n) -> bool:
+    return n > 0 and n&(n - 1) == 0
+
+print(isPowerOfTwo(16)) # True
+print(isPowerOfTwo(3)) # Flase
