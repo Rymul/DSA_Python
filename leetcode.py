@@ -321,3 +321,16 @@ def isPowerOfTwo(n) -> bool:
 
 print(isPowerOfTwo(16)) # True
 print(isPowerOfTwo(3)) # Flase
+
+# 258. Add Digits
+
+def addDigits(num) -> int:
+    while num > 9:
+        sum_num = 0
+        while num:
+            sum_num += num % 10
+            num = num // 10
+        num = sum_num
+    return num
+
+print(addDigits(38)) #2
