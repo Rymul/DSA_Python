@@ -334,3 +334,11 @@ def addDigits(num) -> int:
     return num
 
 print(addDigits(38)) #2
+
+# 459. Repeated Substring Pattern
+
+def repeatedSubstringPattern(s) -> bool:
+    return s in s[1:] + s[:-1]
+
+print(repeatedSubstringPattern('xyxyxy'))
+print(repeatedSubstringPattern('xyx'))
