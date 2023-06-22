@@ -354,3 +354,17 @@ def findErrorNums(nums):
 
 print(findErrorNums([1,2,2,3,4]))
 print(findErrorNums([1,2,3,4,5,5,6]))
+
+
+# 653. Two Sum IV - Input is a BST
+
+def findTarget(root, k) -> bool:
+    values = {}
+    def _findTarget(node):
+        if not node:
+            return False
+        if node.val in values:
+            return True
+        values[k - node.val] = True
+        return _findTarget(node.left) or _findTarget(node.right)
+    return _findTarget(root)
