@@ -342,3 +342,15 @@ def repeatedSubstringPattern(s) -> bool:
 
 print(repeatedSubstringPattern('xyxyxy'))
 print(repeatedSubstringPattern('xyx'))
+
+
+# 645. Set Mismatch
+def findErrorNums(nums):
+    l = len(nums)
+    m = l * (l + 1) // 2
+    miss = m - sum(set(nums))
+    dup = sum(nums) + miss - m
+    return [dup, miss]
+
+print(findErrorNums([1,2,2,3,4]))
+print(findErrorNums([1,2,3,4,5,5,6]))
