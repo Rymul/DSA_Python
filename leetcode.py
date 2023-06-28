@@ -368,3 +368,19 @@ def findTarget(root, k) -> bool:
         values[k - node.val] = True
         return _findTarget(node.left) or _findTarget(node.right)
     return _findTarget(root)
+
+# 606. Construct String from Binary Tree
+
+def tree2str(root) -> str:
+    if root is None:
+        return ''
+    s = str(root.val)
+    if root.left is None and root.right is None:
+        s += ''
+    if root.left:
+        s += '({})'.format(tree2str(root.left))
+    if root.left is None and root.right:
+        s += '()'
+    if root.right:
+        s += '({})'.format(tree2str(root.right))
+    return s
