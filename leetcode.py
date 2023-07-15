@@ -394,3 +394,26 @@ def leafSimilar(root1, root2) -> bool:
             return [root.val]
         return dfs(root.left) + dfs(root.right)
     return dfs(root1) == dfs(root2)
+
+
+# 2. Add Two Numbers
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def addTwoNumbers(l1, l2):
+    dummy = current = ListNode(0)
+    carry = 0
+    while l1 or l2 or carry:
+        if l1:
+            carry += l1.val
+            l1 = l1.next
+        if l2:
+            carry += l2.val
+            l2 = l2.next
+        current.next = ListNode(carry % 10)
+        current = current.next
+        carry //= 10
+    return dummy.next
