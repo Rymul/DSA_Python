@@ -433,3 +433,23 @@ def twoSum(nums, target):
         dictionary[target - num] = i
 
 print(twoSum([2,7,11,15], 9))
+
+# 20. Valid Parentheses
+
+def isValid(s) -> bool:
+    parens = {
+    "{" : "}",
+    "[" : "]",
+    "(" : ")"
+    }
+    stack = []
+    for char in s:
+        if char in parens:
+            stack.append(char)
+        elif len(stack) == 0 or parens[stack[-1]] != char:
+            return False
+        else:
+            stack.pop()
+    return len(stack) == 0
+
+print(isValid("()[]{}"))
