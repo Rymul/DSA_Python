@@ -467,3 +467,16 @@ def hasCycle(head) -> bool:
         visited.add(current)
         current = current.next
     return False
+
+# 144. Binary Tree Preorder Traversal
+
+def preorderTraversal(root):
+    def dfs(node):
+        if node is None:
+            return []
+        res.append(node.val)
+        dfs(node.left)
+        dfs(node.right)
+    res = []
+    dfs(root)
+    return res
