@@ -453,3 +453,17 @@ def isValid(s) -> bool:
     return len(stack) == 0
 
 print(isValid("()[]{}"))
+
+
+# 141. Linked List Cycle
+
+def hasCycle(head) -> bool:
+    visited = set()
+    current = head
+
+    while current is not None:
+        if current in visited:
+            return True
+        visited.add(current)
+        current = current.next
+    return False
