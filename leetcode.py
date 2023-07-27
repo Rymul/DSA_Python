@@ -496,3 +496,15 @@ def postorder_traversal(root) -> list:
         if current.right:
             stack.append(current.right)
     return res[::-1]
+
+# 35. Search Insert Position
+
+def searchInsert(nums, target) -> int:
+    low, high = 0, len(nums)
+    while low < high:
+        mid = (low + high)//2
+        if target > nums[mid]:
+            low = mid + 1
+        else:
+            high = mid
+    return low
