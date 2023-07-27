@@ -508,3 +508,12 @@ def searchInsert(nums, target) -> int:
         else:
             high = mid
     return low
+
+
+# 58. Length of Last Word
+
+def lengthOfLastWord(s: str) -> int:
+    words = s.split()
+    if words:
+        return len(words[-1])
+    return 0
