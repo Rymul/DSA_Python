@@ -533,4 +533,10 @@ def mergeTwoLists(list1, list2):
         cur = cur.next
     cur.next = list1 or list2
     return dummy.next
-        
+
+# 28. Find the Index of the First Occurrence in a String
+
+def strStr(haystack: str, needle: str) -> int:
+    return haystack.find(needle)
+
+print(strStr("sadbutsad", "sad"))
