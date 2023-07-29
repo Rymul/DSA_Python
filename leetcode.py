@@ -550,3 +550,20 @@ def isSameTree(self, p, q) -> bool:
         return False
     else:
         return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+
+# 101. Symmetric Tree
+
+def isSymmetric(self, root) -> bool:
+    if not root:
+        return True
+    return self.isSame(root.left, root.right)
+
+def isSame(self, left, right) -> bool:
+    if left is None and right is None:
+        return True
+    if left is None or right is None:
+        return False
+    if left.val != right.val:
+        return False
+    return self.isSame(left.left, right.right) and self.isSame(left.right, right.left)
