@@ -540,3 +540,13 @@ def strStr(haystack: str, needle: str) -> int:
     return haystack.find(needle)
 
 print(strStr("sadbutsad", "sad"))
+
+# 100. Same Tree
+
+def isSameTree(self, p, q) -> bool:
+    if not p and not q:
+        return True
+    elif not p or not q:
+        return False
+    else:
+        return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
